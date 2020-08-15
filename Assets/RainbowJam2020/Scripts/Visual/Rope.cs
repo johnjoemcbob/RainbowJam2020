@@ -5,14 +5,12 @@ using UnityEngine;
 // From: https://github.com/dci05049/Verlet-Rope-Unity/blob/master/Tutorial%20Verlet%20Rope/Assets/Rope.cs
 public class Rope : MonoBehaviour
 {
-
 	private LineRenderer lineRenderer;
 	private List<RopeSegment> ropeSegments = new List<RopeSegment>();
 	private float ropeSegLen = 0.25f;
 	private int segmentLength = 35;
 	private float lineWidth = 0.1f;
 
-	// Use this for initialization
 	void Start()
 	{
 		this.lineRenderer = this.GetComponent<LineRenderer>();
@@ -25,7 +23,6 @@ public class Rope : MonoBehaviour
 		}
 	}
 
-	// Update is called once per frame
 	void Update()
 	{
 		this.DrawRope();

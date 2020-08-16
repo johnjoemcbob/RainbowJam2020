@@ -11,6 +11,7 @@ public class Wire : MonoBehaviour
 	public float SPEED_ROTATE = 5;
 	public float PLUG_OFFSET = 0.5f;
 	public float SEG_EXTEND_MULT = 5;
+	public bool CLAMP_BOTTOM = true;
 
 	[Header( "References" )]
 	public Transform StartPoint;
@@ -153,7 +154,7 @@ public class Wire : MonoBehaviour
 			firstSegment.posNow += forceGravity * Time.fixedDeltaTime;
 
 			// Clamp to wire rack
-			if ( firstSegment.posNow.y < 0 )
+			if ( CLAMP_BOTTOM && firstSegment.posNow.y < 0 )
 			{
 				firstSegment.posNow.x = Mathf.Lerp( firstSegment.posNow.x, 0, Time.deltaTime );
 			}
@@ -258,25 +259,41 @@ public class Wire : MonoBehaviour
 		{
 			AudioSource.PlayClipAtPoint( Clip_Drag, Vector3.zero );
 		}
+
+		// Bring to front
+		lineRenderer.sortingOrder += 100;
+		HeadSprite.sortingOrder += 100;
 	}
 
 	public static void TryDrop()
 	{
 		if ( CurrentHeld )
 		{
-			if ( Port.Hovered )
-			{
-				CurrentHeld.CurrentState = State.Socketed;
-				CurrentHeld.AddPort( Port.Hovered );
-				AudioSource.PlayClipAtPoint( CurrentHeld.Clip_Drop, Vector3.zero );
-			}
-			else
-			{
-				CurrentHeld.CurrentState = State.Retract;
-				AudioSource.PlayClipAtPoint( CurrentHeld.Clip_Retract, Vector3.zero );
-			}
-			CurrentHeld = null;
+			CurrentHeld.Drop();
 		}
+	}
+
+	public void Drop()
+	{
+		if ( Port.Hovered )
+		{
+			CurrentHeld.TryAddPort( Port.Hovered );
+		}
+		else
+		{
+			CurrentHeld.Retract();
+		}
+		CurrentHeld = null;
+
+		// Back to normal ordering
+		lineRenderer.sortingOrder -= 100;
+		HeadSprite.sortingOrder -= 100;
+	}
+
+	public void Retract()
+	{
+		CurrentState = State.Retract;
+		AudioSource.PlayClipAtPoint( Clip_Retract, Vector3.zero );
 	}
 
 	public static void TryHover()
@@ -298,14 +315,27 @@ public class Wire : MonoBehaviour
 	#endregion
 
 	#region Ports
-	public void AddPort( Port port )
+	public void TryAddPort( Port port )
 	{
-		Port = port;
+		var ind = port.transform.GetSiblingIndex() + 1;
+		bool success = FindObjectOfType<InkHandler>().ChooseChoice( ind );
+
+		if ( success )
+		{
+			Port = port;
+			CurrentState = State.Socketed;
+			AudioSource.PlayClipAtPoint( Clip_Drop, Vector3.zero );
+		}
+		else
+		{
+			Retract();
+		}
 	}
 
 	public void RemovePort()
 	{
 		Port = null;
+		FindObjectOfType<InkHandler>().StartStory();
 	}
 	#endregion
 }

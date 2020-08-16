@@ -8,7 +8,7 @@ public class ColourPalette : MonoBehaviour
 
 	public Color[] Palette;
 
-	public void Start()
+	public void Awake()
 	{
 		Instance = this;
 	}

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Port : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class Port : MonoBehaviour
 	private void Start()
 	{
 		spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+
+		GetComponentInChildren<Text>().text = ( transform.GetSiblingIndex() + 1 ).ToString();
 	}
 
 	private void OnMouseEnter()

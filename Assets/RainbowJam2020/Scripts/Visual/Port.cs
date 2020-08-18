@@ -7,8 +7,12 @@ public class Port : MonoBehaviour
 {
 	public static Port Hovered;
 
+	[Header( "Variables" )]
 	public Color ColourHover;
 	public Color ColourDefault;
+
+	[HideInInspector]
+	public int Number = -1;
 
 	private SpriteRenderer spriteRenderer;
 
@@ -16,7 +20,8 @@ public class Port : MonoBehaviour
 	{
 		spriteRenderer = GetComponentInChildren<SpriteRenderer>();
 
-		GetComponentInChildren<Text>().text = ( transform.GetSiblingIndex() + 1 ).ToString();
+		Number = transform.parent.GetSiblingIndex() + 1;
+		GetComponentInChildren<Text>().text = ( Number ).ToString();
 	}
 
 	private void OnMouseEnter()

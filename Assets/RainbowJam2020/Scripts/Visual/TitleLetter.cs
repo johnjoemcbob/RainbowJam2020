@@ -24,11 +24,12 @@ public class TitleLetter : MonoBehaviour
 				Targets[i] = Points[i];
 			}
 		lineRenderer.positionCount = Points.Length;
-		for ( int i = 0; i < Points.Length; i++ )
-		{
-			var target = ( Targets[0] - Targets[1] ) * -( 10 + i );
-			lineRenderer.SetPosition( i, target );
-		}
+		//for ( int i = 0; i < Points.Length; i++ )
+		//{
+		//	var target = ( Targets[0] - Targets[1] ) * -( 10 + i );
+		//	lineRenderer.SetPosition( i, target );
+		//}
+		lineRenderer.SetPositions( Targets );
 
 		// Store wire heads for following line
 		Heads = new Transform[2];
@@ -46,19 +47,19 @@ public class TitleLetter : MonoBehaviour
 			Targets[i] = Points[i];
 
 			// Lerp each point towards next closest target, or follow the leader if its not reached the targets yet
-			var target = Targets[i];
-			if ( reached < i )
-			{
-				// Otherwise follow the leader
-				target = Targets[Targets.Length - reached - 1];
-			}
-			pos = Vector3.MoveTowards( pos, target, Time.deltaTime * LERP_SPEED );
-			Debug.Log( Targets.Length - reached - 1 );
-			if ( reached + 1 < Targets.Length && Vector3.Distance( pos, Targets[Targets.Length-reached-1] ) < 0.2f )
-			{
-				reached++;
-				Debug.Log( "reached " + reached );
-			}
+			//var target = Targets[i];
+			//if ( reached < i )
+			//{
+			//	// Otherwise follow the leader
+			//	target = Targets[Targets.Length - reached - 1];
+			//}
+			//pos = Vector3.MoveTowards( pos, target, Time.deltaTime * LERP_SPEED );
+			//Debug.Log( Targets.Length - reached - 1 );
+			//if ( reached + 1 < Targets.Length && Vector3.Distance( pos, Targets[Targets.Length-reached-1] ) < 0.2f )
+			//{
+			//	reached++;
+			//	Debug.Log( "reached " + reached );
+			//}
 
 			// Sway a little
 			//pos += new Vector3( Mathf.Sin( Time.time + i ), Mathf.Cos( Time.time - i ), 0 ) / 100;

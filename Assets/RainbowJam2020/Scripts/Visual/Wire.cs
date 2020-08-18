@@ -10,8 +10,11 @@ public class Wire : MonoBehaviour
 	public float SPEED_MOVE = 5;
 	public float SPEED_ROTATE = 5;
 	public float PLUG_OFFSET = 0.5f;
+	public float SEG_EXTEND_DEFAULT = 0.05f;
 	public float SEG_EXTEND_MULT = 5;
 	public bool CLAMP_BOTTOM = true;
+	public Vector2 forceGravity = new Vector2(0f, -1f);
+	public float GravityIncrementMultiplier = 1;
 
 	[Header( "References" )]
 	public Transform StartPoint;
@@ -88,7 +91,7 @@ public class Wire : MonoBehaviour
 		EndPoint.position = Vector3.MoveTowards( EndPoint.position, target, SPEED_MOVE * Time.deltaTime );
 
 		// Lerp length
-		ropeSegLen = 0.05f + Vector3.Distance( StartPoint.position, EndPoint.position ) * SEG_EXTEND_MULT;
+		ropeSegLen = SEG_EXTEND_DEFAULT + Vector3.Distance( StartPoint.position, EndPoint.position ) * SEG_EXTEND_MULT;
 
 		// Lerp sprite angle in direction of movement
 		//if ( EndPoint.position != target )
@@ -143,21 +146,14 @@ public class Wire : MonoBehaviour
 	private void Simulate()
 	{
 		// SIMULATION
-		Vector2 forceGravity = new Vector2(0f, -1f);
-
 		for ( int i = 1; i < this.segmentLength; i++ )
 		{
 			RopeSegment firstSegment = this.ropeSegments[i];
 			Vector2 velocity = firstSegment.posNow - firstSegment.posOld;
 			firstSegment.posOld = firstSegment.posNow;
 			firstSegment.posNow += velocity;
-			firstSegment.posNow += forceGravity * Time.fixedDeltaTime;
+			firstSegment.posNow += ( forceGravity / this.segmentLength * i * GravityIncrementMultiplier ) * Time.fixedDeltaTime;
 
-			// Clamp to wire rack
-			if ( CLAMP_BOTTOM && firstSegment.posNow.y < 0 )
-			{
-				firstSegment.posNow.x = Mathf.Lerp( firstSegment.posNow.x, 0, Time.deltaTime );
-			}
 			this.ropeSegments[i] = firstSegment;
 		}
 
@@ -211,6 +207,12 @@ public class Wire : MonoBehaviour
 			{
 				secondSeg.posNow += changeAmount;
 				this.ropeSegments[i + 1] = secondSeg;
+			}
+
+			// Clamp to wire rack
+			if ( CLAMP_BOTTOM && firstSeg.posNow.y < 0 )
+			{
+				firstSeg.posNow.x = Mathf.Lerp( firstSeg.posNow.x, 0, Time.deltaTime );
 			}
 		}
 	}
@@ -317,8 +319,7 @@ public class Wire : MonoBehaviour
 	#region Ports
 	public void TryAddPort( Port port )
 	{
-		var ind = port.transform.GetSiblingIndex() + 1;
-		bool success = FindObjectOfType<InkHandler>().ChooseChoice( ind );
+		bool success = FindObjectOfType<InkHandler>().ChooseChoice( port.Number );
 
 		if ( success )
 		{

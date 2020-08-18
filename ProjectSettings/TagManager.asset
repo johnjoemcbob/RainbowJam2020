@@ -41,3 +41,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Wires
+    uniqueID: 1218973535
+    locked: 0

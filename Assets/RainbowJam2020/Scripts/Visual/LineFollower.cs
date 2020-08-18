@@ -111,7 +111,7 @@ public class LineFollower : MonoBehaviour
 	/// Prevoius the specified Index, the points.Length must be > 0.
 	/// </summary>
 	/// <param name="Index">index on array points.</param>
-	Vector3 Prevoius( int index )
+	Vector3 Previous( int index )
 	{
 		if ( 0 == index )
 		{
@@ -129,6 +129,7 @@ public class LineFollower : MonoBehaviour
 	/// <param name="Index">index on array points.</param>
 	Vector3 Current( int index )
 	{
+		index = Mathf.Clamp( index, 0, wayPoints.Length - 1 );
 		return wayPoints[index];
 	}
 
@@ -152,7 +153,7 @@ public class LineFollower : MonoBehaviour
 	void IncreaseIndex()
 	{
 		currentPoint++;
-		if ( currentPoint == wayPoints.Length )
+		if ( currentPoint == wayPoints.Length - 1 )
 		{
 			if ( justOnce )
 				completed = true;
@@ -187,7 +188,7 @@ public class LineFollower : MonoBehaviour
 
 	void FollowSmooth()
 	{
-		Vector3 anchor1 = Vector3.Lerp (Prevoius (currentPoint), Current (currentPoint), .5f);
+		Vector3 anchor1 = Vector3.Lerp (Previous (currentPoint), Current (currentPoint), .5f);
 		Vector3 anchor2 = Vector3.Lerp (Current (currentPoint), Next (currentPoint), .5f);
 
 		if ( i < iterations )
@@ -219,7 +220,7 @@ public class LineFollower : MonoBehaviour
 		Vector3[] ret = new Vector3[numSplit*wayPoints.Length];
 		for ( int oldPoint = 0; oldPoint < wayPoints.Length; oldPoint++ )
 		{
-			Vector3 anchor1 = Vector3.Lerp (Prevoius (oldPoint), Current (oldPoint), .5f);
+			Vector3 anchor1 = Vector3.Lerp (Previous (oldPoint), Current (oldPoint), .5f);
 			Vector3 anchor2 = Vector3.Lerp (Current (oldPoint), Next (oldPoint), .5f);
 
 			for ( int j = 1; j < numSplit; j++ )

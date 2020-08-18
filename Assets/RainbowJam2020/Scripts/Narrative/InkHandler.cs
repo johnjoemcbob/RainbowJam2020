@@ -120,19 +120,9 @@ public class InkHandler : MonoBehaviour
 		}
 	}
 
-	public bool ChooseChoice( int port )
+	public bool ChooseChoice( int choice )
 	{
-		int index = -1;
-		{
-			for ( int i = 0; i < story.currentChoices.Count; i++ )
-			{
-				if ( story.currentChoices[i].text == port.ToString() )
-				{
-					index = i;
-					break;
-				}
-			}
-		}
+		var index = GetChoiceIndex( choice );
 		if ( index >= 0 && index < story.currentChoices.Count )
 		{
 			story.ChooseChoiceIndex( index );
@@ -144,5 +134,26 @@ public class InkHandler : MonoBehaviour
 			Debug.Log( "I got nuffin to say to u" );
 			return false;
 		}
+	}
+
+	public int GetChoiceIndex( int choice )
+	{
+		int index = -1;
+		{
+			for ( int i = 0; i < story.currentChoices.Count; i++ )
+			{
+				if ( story.currentChoices[i].text == choice.ToString() )
+				{
+					index = i;
+					break;
+				}
+			}
+		}
+		return index;
+	}
+
+	public bool ContainsChoice( int choice )
+	{
+		return ( GetChoiceIndex( choice ) != -1 );
 	}
 }

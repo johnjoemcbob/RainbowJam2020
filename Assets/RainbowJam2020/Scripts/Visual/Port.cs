@@ -9,6 +9,7 @@ public class Port : MonoBehaviour
 
 	[Header( "Variables" )]
 	public Color ColourHover;
+	public Color ColourValid;
 	public Color ColourDefault;
 
 	[HideInInspector]
@@ -34,7 +35,26 @@ public class Port : MonoBehaviour
 	private void OnMouseExit()
 	{
 		Wire.TryUnHover();
-		spriteRenderer.color = ColourDefault;
 		Hovered = null;
+	}
+
+	public void SetDefaultColour()
+	{
+		if ( Wire.CurrentHeld && FindObjectOfType<InkHandler>().ContainsChoice( Number ) )
+		{
+			spriteRenderer.color = ColourValid;
+		}
+		else
+		{
+			spriteRenderer.color = ColourDefault;
+		}
+	}
+
+	public static void SetDefaultColourAll()
+	{
+		foreach ( var port in FindObjectsOfType<Port>() )
+		{
+			port.SetDefaultColour();
+		}
 	}
 }

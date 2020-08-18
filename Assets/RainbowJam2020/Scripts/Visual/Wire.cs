@@ -262,6 +262,9 @@ public class Wire : MonoBehaviour
 			AudioSource.PlayClipAtPoint( Clip_Drag, Vector3.zero );
 		}
 
+		// Highlight all ports properly
+		Port.SetDefaultColourAll();
+
 		// Bring to front
 		lineRenderer.sortingOrder += 100;
 		HeadSprite.sortingOrder += 100;
@@ -286,6 +289,9 @@ public class Wire : MonoBehaviour
 			CurrentHeld.Retract();
 		}
 		CurrentHeld = null;
+
+		// Highlight all ports properly
+		Port.SetDefaultColourAll();
 
 		// Back to normal ordering
 		lineRenderer.sortingOrder -= 100;

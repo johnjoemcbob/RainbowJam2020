@@ -7,18 +7,20 @@ public class InkHandler : MonoBehaviour
 {
 	public static event Action<Story> OnCreateStory;
 
-	[SerializeField]
-	private TextAsset inkJSONAsset = null;
-	public Story story;
-
+	[Header( "References" )]
 	[SerializeField]
 	private Canvas canvas = null;
-
+	public Transform UIParent;
 	// UI Prefabs
 	[SerializeField]
 	private Text textPrefab = null;
 	[SerializeField]
 	private Button buttonPrefab = null;
+
+	[Header( "Assets" )]
+	[SerializeField]
+	private TextAsset inkJSONAsset = null;
+	public Story story;
 
 	void Awake()
 	{
@@ -89,7 +91,7 @@ public class InkHandler : MonoBehaviour
 	{
 		Text storyText = Instantiate (textPrefab) as Text;
 		storyText.text = text;
-		storyText.transform.SetParent( canvas.transform, false );
+		storyText.transform.SetParent( UIParent.transform, false );
 	}
 
 	// Creates a button showing the choice text
@@ -97,7 +99,7 @@ public class InkHandler : MonoBehaviour
 	{
 		// Creates the button from a prefab
 		Button choice = Instantiate (buttonPrefab) as Button;
-		choice.transform.SetParent( canvas.transform, false );
+		choice.transform.SetParent( UIParent.transform, false );
 
 		// Gets the text from the button prefab
 		Text choiceText = choice.GetComponentInChildren<Text> ();
@@ -113,26 +115,16 @@ public class InkHandler : MonoBehaviour
 	// Destroys all the children of this gameobject (all the UI)
 	void RemoveChildren()
 	{
-		int childCount = canvas.transform.childCount;
+		int childCount = UIParent.transform.childCount;
 		for ( int i = childCount - 1; i >= 0; --i )
 		{
-			GameObject.Destroy( canvas.transform.GetChild( i ).gameObject );
+			GameObject.Destroy( UIParent.transform.GetChild( i ).gameObject );
 		}
 	}
 
-	public bool ChooseChoice( int port )
+	public bool ChooseChoice( int choice )
 	{
-		int index = -1;
-		{
-			for ( int i = 0; i < story.currentChoices.Count; i++ )
-			{
-				if ( story.currentChoices[i].text == port.ToString() )
-				{
-					index = i;
-					break;
-				}
-			}
-		}
+		var index = GetChoiceIndex( choice );
 		if ( index >= 0 && index < story.currentChoices.Count )
 		{
 			story.ChooseChoiceIndex( index );
@@ -144,5 +136,26 @@ public class InkHandler : MonoBehaviour
 			Debug.Log( "I got nuffin to say to u" );
 			return false;
 		}
+	}
+
+	public int GetChoiceIndex( int choice )
+	{
+		int index = -1;
+		{
+			for ( int i = 0; i < story.currentChoices.Count; i++ )
+			{
+				if ( story.currentChoices[i].text == choice.ToString() )
+				{
+					index = i;
+					break;
+				}
+			}
+		}
+		return index;
+	}
+
+	public bool ContainsChoice( int choice )
+	{
+		return ( GetChoiceIndex( choice ) != -1 );
 	}
 }

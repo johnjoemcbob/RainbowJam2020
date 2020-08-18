@@ -7,8 +7,13 @@ public class Port : MonoBehaviour
 {
 	public static Port Hovered;
 
+	[Header( "Variables" )]
 	public Color ColourHover;
+	public Color ColourValid;
 	public Color ColourDefault;
+
+	[HideInInspector]
+	public int Number = -1;
 
 	private SpriteRenderer spriteRenderer;
 
@@ -16,7 +21,8 @@ public class Port : MonoBehaviour
 	{
 		spriteRenderer = GetComponentInChildren<SpriteRenderer>();
 
-		GetComponentInChildren<Text>().text = ( transform.GetSiblingIndex() + 1 ).ToString();
+		Number = transform.parent.GetSiblingIndex() + 1;
+		GetComponentInChildren<Text>().text = ( Number ).ToString();
 	}
 
 	private void OnMouseEnter()
@@ -29,7 +35,26 @@ public class Port : MonoBehaviour
 	private void OnMouseExit()
 	{
 		Wire.TryUnHover();
-		spriteRenderer.color = ColourDefault;
 		Hovered = null;
+	}
+
+	public void SetDefaultColour()
+	{
+		if ( Wire.CurrentHeld && FindObjectOfType<InkHandler>().ContainsChoice( Number ) )
+		{
+			spriteRenderer.color = ColourValid;
+		}
+		else
+		{
+			spriteRenderer.color = ColourDefault;
+		}
+	}
+
+	public static void SetDefaultColourAll()
+	{
+		foreach ( var port in FindObjectsOfType<Port>() )
+		{
+			port.SetDefaultColour();
+		}
 	}
 }

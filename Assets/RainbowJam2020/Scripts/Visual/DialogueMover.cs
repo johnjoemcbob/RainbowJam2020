@@ -6,6 +6,7 @@ public class DialogueMover : MonoBehaviour
 {
 	[Header( "Variables" )]
 	public float UIMult = 1;
+	public float HiddenYOff = 1;
 
 	[Header( "References" )]
 	public Transform UIMover;
@@ -18,7 +19,7 @@ public class DialogueMover : MonoBehaviour
 
     void Update()
     {
-		var pos = new Vector3( 0, Mathf.Sin( Time.time ), 0 );
+		var pos = new Vector3( 0, Mathf.Abs( Mathf.Sin( Time.time ) ) * HiddenYOff, 0 );
 		UIMover.localPosition = pos * UIMult;
 		SpriteMover.localPosition = pos;
 	}

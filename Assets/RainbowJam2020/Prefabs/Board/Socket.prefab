@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8367592550736659847}
   - component: {fileID: 1020684579995795271}
+  - component: {fileID: 5473444351348745342}
+  - component: {fileID: 6982257339307387567}
   m_Layer: 0
   m_Name: Socket
   m_TagString: Untagged
@@ -83,6 +85,99 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5473444351348745342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 926960742420127208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3129aa26112f22d46855e50dcbb8f8aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0.12452426
+      outSlope: 0.12452426
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.28363532
+    - serializedVersion: 3
+      time: 0.19934376
+      value: 0.6562009
+      inSlope: 5.8596425
+      outSlope: 5.8596425
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.21874805
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.497023
+      value: 0.0034869649
+      inSlope: 0.008077562
+      outSlope: 0.008077562
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.31712812
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.7353538
+      value: 0.68713474
+      inSlope: -5.254285
+      outSlope: -5.254285
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.1992261
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  start: {x: -0.05, y: 0, z: 0}
+  end: {x: 0, y: 0, z: 0}
+  duration: 0.7
+  Jingle: {fileID: 8300000, guid: 17e9747a85a7bfd4b848c47f0a757f60, type: 3}
+--- !u!61 &6982257339307387567
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 926960742420127208}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.14, y: 3.48}
+    newSize: {x: 2.14, y: 3.48}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.14, y: 3.48}
+  m_EdgeRadius: 0
 --- !u!1001 &8323663611978401041
 PrefabInstance:
   m_ObjectHideFlags: 0

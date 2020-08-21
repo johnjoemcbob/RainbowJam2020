@@ -37,11 +37,21 @@ public class DialogueMover : MonoBehaviour
 
 	public void Show()
 	{
-		TargetPos = Vector3.zero;
+		var target = Vector3.zero;
+		if ( TargetPos != target )
+		{
+			TargetPos = target;
+			StaticHelpers.SpawnResourceAudioSource( "scrape", Vector3.zero, Random.Range( 0.6f, 1.0f ), 0.4f );
+		}
 	}
 
 	public void Hide()
 	{
-		TargetPos = new Vector3( 0, HiddenYOff, 0 );
+		var target = new Vector3( 0, HiddenYOff, 0 );
+		if ( TargetPos != target )
+		{
+			TargetPos = target;
+			StaticHelpers.SpawnResourceAudioSource( "scrape", Vector3.zero, Random.Range( 0.6f, 1.0f ), 0.4f );
+		}
 	}
 }

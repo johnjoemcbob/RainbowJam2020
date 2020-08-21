@@ -92,6 +92,15 @@ public class Switch : MonoBehaviour
 			{
 				PortraitUpdater.Instance.SetPortrait( -1 );
 			}
+			// Sound
+			if ( press )
+			{
+				StaticHelpers.SpawnResourceAudioSource( "switch1", Vector3.zero, Random.Range( 0.6f, 1.0f ) );
+			}
+			else
+			{
+				StaticHelpers.SpawnResourceAudioSource( "switch2", Vector3.zero, Random.Range( 0.6f, 1.0f ) );
+			}
 			// Start story if pressed
 			Game.Instance.OnSwitchStateChanged( Number, press );
 

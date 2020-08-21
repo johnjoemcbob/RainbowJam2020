@@ -33,7 +33,7 @@ public class StaticHelpers
 
 	public static GameObject SpawnResourceAudioSource( string clipname, Vector3 point, float pitch = 1, float volume = 1, float delay = 0 )
 	{
-		AudioClip clip = Resources.Load( "Sounds/" + clipname ) as AudioClip;
+		AudioClip clip = Resources.Load( clipname ) as AudioClip;
 		return SpawnAudioSource( clip, point, pitch, volume, delay );
 	}
 

@@ -332,6 +332,8 @@ public class Wire : MonoBehaviour
 			Port = port;
 			CurrentState = State.Socketed;
 			AudioSource.PlayClipAtPoint( Clip_Drop, Vector3.zero );
+
+			PortraitUpdater.Instance.SetPortrait( port.Number );
 		}
 		else
 		{
@@ -343,6 +345,8 @@ public class Wire : MonoBehaviour
 	{
 		Port = null;
 		FindObjectOfType<InkHandler>().StartStory();
+
+		PortraitUpdater.Instance.SetPortrait( -1 );
 	}
 	#endregion
 }

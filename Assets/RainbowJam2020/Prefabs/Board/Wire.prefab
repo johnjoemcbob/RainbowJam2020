@@ -11,14 +11,14 @@ GameObject:
   - component: {fileID: 2963345738551937830}
   - component: {fileID: 3593828611689613351}
   - component: {fileID: 1273699729887592709}
-  - component: {fileID: 3105297430604689040}
+  - component: {fileID: 5279268024855186067}
   m_Layer: 0
   m_Name: Socketed Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2963345738551937830
 Transform:
   m_ObjectHideFlags: 0
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 41530581448428050}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_Children: []
   m_Father: {fileID: 5733123366488287677}
   m_RootOrder: 1
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 1218973535
   m_SortingLayer: 1
   m_SortingOrder: 5
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 0113849dffb84434493f4f053ab271d7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -96,7 +96,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bfce482b6c7bed408322d18838f6e7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!65 &3105297430604689040
+  IsDeployedJack: 0
+  JackSprites: []
+--- !u!65 &5279268024855186067
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -107,7 +109,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.2, y: 0.2, z: 0.2}
+  m_Size: {x: 1.04, y: 0.64, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5733123366488287676
 GameObject:
@@ -165,7 +167,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5733123366974716256}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.3, z: 0}
+  m_LocalPosition: {x: 0, y: -0.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5733123367935068361}
@@ -244,7 +246,7 @@ SpriteRenderer:
   m_SortingLayerID: 1218973535
   m_SortingLayer: 1
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: b708daf10365fbf469f386c835817b8e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8f6b4c4c275565241ab0c7e1f97460ab, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -267,6 +269,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bfce482b6c7bed408322d18838f6e7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsDeployedJack: 1
+  JackSprites:
+  - {fileID: 21300000, guid: b708daf10365fbf469f386c835817b8e, type: 3}
+  - {fileID: 21300000, guid: 1710405c1c14b5e448e6a75b010ee24e, type: 3}
+  - {fileID: 21300000, guid: 8cfde67ade9c3b04fbfac60431296376, type: 3}
+  - {fileID: 21300000, guid: ec43aaec884cfa94ca17aa940cde4786, type: 3}
+  - {fileID: 21300000, guid: 355701c64bb1db14fae2396acaef7bf5, type: 3}
+  - {fileID: 21300000, guid: a00c9e71a64ac4541912ff2347a654d9, type: 3}
+  - {fileID: 21300000, guid: a7a59f0a535acc94c9f2edde666e389a, type: 3}
+  - {fileID: 21300000, guid: 8f6b4c4c275565241ab0c7e1f97460ab, type: 3}
 --- !u!65 &296811331692007249
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -431,13 +443,17 @@ MonoBehaviour:
   CLAMP_BOTTOM: 1
   forceGravity: {x: 0, y: -1}
   GravityIncrementMultiplier: 1
+  ClampedToY: 0.4
+  ClampCount: 15
+  ClampStrength: 5
+  ClampDecay: 1.1
   StartPoint: {fileID: 5733123366974716257}
   EndPoint: {fileID: 5733123366488287677}
   HeadSprite: {fileID: 5733123367807359010}
   DeploySprite: {fileID: 5733123367807359012}
   SocketedSprite: {fileID: 41530581448428050}
-  Clip_Drag: {fileID: 8300000, guid: 3d67e9471ab52e544ada7ad791fc0c33, type: 3}
+  Clip_Drag: {fileID: 8300000, guid: 0c31ed582396b3244b12e8fa76adda59, type: 3}
   Clip_Drop: {fileID: 8300000, guid: 44f0d7ec06854ff4dacfcc4cbdb378bc, type: 3}
   Clip_Remove: {fileID: 8300000, guid: 8dd3e890f37a46f4f87f1d23729fe033, type: 3}
   Clip_Hover: {fileID: 8300000, guid: d3a7ee2fa8d03d0489d50790ebf93e10, type: 3}
-  Clip_Retract: {fileID: 8300000, guid: 3d67e9471ab52e544ada7ad791fc0c33, type: 3}
+  Clip_Retract: {fileID: 8300000, guid: 0a09ecb66dc5554489c5a1058b9826a0, type: 3}

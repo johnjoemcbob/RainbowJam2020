@@ -2,9 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//[ExecuteInEditMode]
 public class PlugHead : MonoBehaviour
 {
+	[Header( "Variables" )]
+	public bool IsDeployedJack;
+
+	[Header( "Assets" )]
+	public Sprite[] JackSprites;
+
 	private Wire Parent;
+
+	private void Awake()
+	{
+		if ( IsDeployedJack )
+		{
+			var index = transform.parent.parent.GetSiblingIndex();
+			GetComponent<SpriteRenderer>().sprite = JackSprites[index];
+		}
+	}
 
 	private void Start()
 	{
@@ -21,6 +37,6 @@ public class PlugHead : MonoBehaviour
 
 	private void OnMouseDown()
 	{
-		Parent.Pickup();
+		Parent.TryPickup();
 	}
 }

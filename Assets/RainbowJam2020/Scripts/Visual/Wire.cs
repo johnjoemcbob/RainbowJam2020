@@ -15,6 +15,10 @@ public class Wire : MonoBehaviour
 	public bool CLAMP_BOTTOM = true;
 	public Vector2 forceGravity = new Vector2(0f, -1f);
 	public float GravityIncrementMultiplier = 1;
+	public float ClampedToY = 0.4f;
+	public float ClampCount = 5;
+	public float ClampStrength = 5;
+	public float ClampDecay = 1.25f;
 
 	[Header( "References" )]
 	public Transform StartPoint;
@@ -40,11 +44,14 @@ public class Wire : MonoBehaviour
 	private Vector3 RetractToPos;
 
 	private State CurrentState = State.Idle;
-	private Port Port;
+	[HideInInspector]
+	public Port Port;
+	private Switch Switch;
 
-	#region Monobehaviour
+	#region MonoBehaviour
 	void Start()
 	{
+		// Init rope
 		this.lineRenderer = this.GetComponent<LineRenderer>();
 		lineRenderer.material.color = ColourPalette.Instance.GetLoopedColour( transform.GetSiblingIndex() );
 
@@ -56,6 +63,10 @@ public class Wire : MonoBehaviour
 		}
 
 		RetractToPos = EndPoint.position;
+
+		// Find corresponding switch
+		Switch = FindObjectOfType<Switch>().transform.parent.GetChild( transform.GetSiblingIndex() ).GetComponent<Switch>();
+		Switch.Wire = this;
 	}
 
 	void Update()
@@ -65,6 +76,10 @@ public class Wire : MonoBehaviour
 		if ( CurrentState == State.Idle || CurrentState == State.Retract )
 		{
 			target = RetractToPos;
+			if ( EndPoint.position == target )
+			{
+				CurrentState = State.Idle;
+			}
 		}
 		if ( CurrentState == State.Held || CurrentState == State.HeldHoverSocket )
 		{
@@ -92,13 +107,17 @@ public class Wire : MonoBehaviour
 
 		// Lerp length
 		ropeSegLen = SEG_EXTEND_DEFAULT + Vector3.Distance( StartPoint.position, EndPoint.position ) * SEG_EXTEND_MULT;
+		if ( CurrentState == State.Idle )
+		{
+			ropeSegLen = SEG_EXTEND_DEFAULT;
+		}
 
 		// Lerp sprite angle in direction of movement
 		//if ( EndPoint.position != target )
 		{
 			float rot_z = Mathf.Atan2(LastMoveDirection.y, LastMoveDirection.x) * Mathf.Rad2Deg;
 			var targetang = new Vector3( 0, 0, rot_z - 90 );
-				if ( CurrentState == State.Retract )
+				if ( CurrentState == State.Idle || CurrentState == State.Retract )
 				{
 					// If retracting then lerp towards straight up
 					targetang.z = 0;
@@ -145,6 +164,8 @@ public class Wire : MonoBehaviour
 	#region Simulation
 	private void Simulate()
 	{
+		var strength = ClampStrength;
+
 		// SIMULATION
 		for ( int i = 1; i < this.segmentLength; i++ )
 		{
@@ -153,6 +174,16 @@ public class Wire : MonoBehaviour
 			firstSegment.posOld = firstSegment.posNow;
 			firstSegment.posNow += velocity;
 			firstSegment.posNow += ( forceGravity / this.segmentLength * i * GravityIncrementMultiplier ) * Time.fixedDeltaTime;
+
+			// Clamp to wire rack
+			var ystart = StartPoint.position.y + ClampedToY;
+			//if ( CLAMP_BOTTOM && firstSegment.posNow.y < ystart )
+			if ( CLAMP_BOTTOM && i <= ClampCount )
+			{
+				firstSegment.posNow.x = Mathf.Lerp( firstSegment.posNow.x, StartPoint.position.x, Time.deltaTime * strength );
+				firstSegment.posNow.y = Mathf.Lerp( firstSegment.posNow.y, ystart, Time.deltaTime * strength );
+				strength /= ClampDecay;
+			}
 
 			this.ropeSegments[i] = firstSegment;
 		}
@@ -208,12 +239,6 @@ public class Wire : MonoBehaviour
 				secondSeg.posNow += changeAmount;
 				this.ropeSegments[i + 1] = secondSeg;
 			}
-
-			// Clamp to wire rack
-			if ( CLAMP_BOTTOM && firstSeg.posNow.y < 0 )
-			{
-				firstSeg.posNow.x = Mathf.Lerp( firstSeg.posNow.x, 0, Time.deltaTime );
-			}
 		}
 	}
 
@@ -247,19 +272,26 @@ public class Wire : MonoBehaviour
 	#endregion
 
 	#region Interactions
-	public void Pickup()
+	public void TryPickup( bool forced = false )
+	{
+		if ( Switch.Pressed )
+		{
+			Pickup( forced );
+		}
+	}
+
+	void Pickup( bool forced = false )
 	{
 		CurrentHeld = this;
 		CurrentState = State.Held;
 
 		if ( Port != null )
 		{
-			RemovePort();
-			AudioSource.PlayClipAtPoint( Clip_Remove, Vector3.zero );
+			RemovePort( forced );
 		}
 		else
 		{
-			AudioSource.PlayClipAtPoint( Clip_Drag, Vector3.zero );
+			PlayClip( Clip_Drag );
 		}
 
 		// Highlight all ports properly
@@ -301,7 +333,7 @@ public class Wire : MonoBehaviour
 	public void Retract()
 	{
 		CurrentState = State.Retract;
-		AudioSource.PlayClipAtPoint( Clip_Retract, Vector3.zero );
+		PlayClip( Clip_Retract );
 	}
 
 	public static void TryHover()
@@ -309,7 +341,7 @@ public class Wire : MonoBehaviour
 		if ( CurrentHeld )
 		{
 			CurrentHeld.CurrentState = State.HeldHoverSocket;
-			AudioSource.PlayClipAtPoint( CurrentHeld.Clip_Hover, Vector3.zero );
+			CurrentHeld.PlayClip( CurrentHeld.Clip_Hover );
 		}
 	}
 
@@ -331,9 +363,7 @@ public class Wire : MonoBehaviour
 		{
 			Port = port;
 			CurrentState = State.Socketed;
-			AudioSource.PlayClipAtPoint( Clip_Drop, Vector3.zero );
-
-			PortraitUpdater.Instance.SetPortrait( port.Number );
+			PlayClip( Clip_Drop );
 		}
 		else
 		{
@@ -341,12 +371,30 @@ public class Wire : MonoBehaviour
 		}
 	}
 
-	public void RemovePort()
+	public void TryRemovePort()
+	{
+		if ( Port != null )
+		{
+			RemovePort();
+		}
+	}
+
+	public void RemovePort( bool forced = false )
 	{
 		Port = null;
-		FindObjectOfType<InkHandler>().StartStory();
+		if ( !forced )
+		{
+			FindObjectOfType<InkHandler>().StartStory();
+		}
 
-		PortraitUpdater.Instance.SetPortrait( -1 );
+		PlayClip( Clip_Remove );
 	}
 	#endregion
+
+	void PlayClip( AudioClip clip )
+	{
+		//AudioSource.PlayClipAtPoint( clip, Vector3.zero );
+		var pitch = 0.9f + ( transform.GetSiblingIndex() / transform.childCount ) * 0.2f;
+		StaticHelpers.SpawnAudioSource( clip, Vector3.zero, pitch );
+	}
 }

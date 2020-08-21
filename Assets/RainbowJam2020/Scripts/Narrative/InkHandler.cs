@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System;
+using System.Collections;
 using Ink.Runtime;
 
 public class InkHandler : MonoBehaviour
 {
+	public static InkHandler Instance;
+
 	public static event Action<Story> OnCreateStory;
 
 	[Header( "References" )]
@@ -19,22 +22,42 @@ public class InkHandler : MonoBehaviour
 
 	[Header( "Assets" )]
 	[SerializeField]
-	private TextAsset inkJSONAsset = null;
+	public TextAsset inkJSONAsset = null;
 	public Story story;
 
-	void Awake()
+	private Coroutine Refreshing;
+
+	#region MonoBehaviour
+	private void Awake()
+	{
+		Instance = this;
+	}
+
+	void Start()
 	{
 		// Remove the default message
 		RemoveChildren();
 		StartStory();
 	}
+	#endregion
 
+	#region Story
 	// Creates a new Story object with the compiled story which we can then play!
 	public void StartStory()
 	{
 		story = new Story( inkJSONAsset.text );
 		if ( OnCreateStory != null ) OnCreateStory( story );
 		RefreshView();
+
+		// Check variables
+		story.ObserveVariable( "portrait", PortraitObserver );
+	}
+
+	public void StopStory()
+	{
+		story = null;
+
+		DialogueMover.Instance.Hide();
 	}
 
 	// This is the main function called every time the story changes. It does a few things:
@@ -42,18 +65,67 @@ public class InkHandler : MonoBehaviour
 	// Continues over all the lines of text, then displays all the choices. If there are no choices, the story is finished!
 	void RefreshView()
 	{
+		if ( Refreshing == null )
+		{
+			Refreshing = StartCoroutine( Co_RefreshView() );
+		}
+	}
+
+	IEnumerator Co_RefreshView()
+	{
+		DialogueMover.Instance.Hide();
+
+		yield return new WaitForSeconds( 5 / DialogueMover.Instance.Speed );
+
+		if ( story )
+		{
+			RefreshView_Func();
+
+			//yield return new WaitForSeconds( 1 );
+
+			DialogueMover.Instance.Show();
+		}
+
+		Refreshing = null;
+	}
+
+	void RefreshView_Func()
+	{
 		// Remove all the UI on screen
 		RemoveChildren();
 
 		// Read all the content until we can't continue any more
+		int lines = 0;
 		while ( story.canContinue )
 		{
 			// Continue gets the next line of the story
 			string text = story.Continue ();
 			// This removes any white space from the text.
 			text = text.Trim();
+
+			// Check valid
+			if ( lines > 3 )
+			{
+				Debug.LogError( "Error in story, too many lines! At: '" + text + "'" );
+				break;
+			}
+			var max = 46;
+			if ( text.Length > max )
+			{
+				Debug.LogWarning( "Possible issue in story, too many characters! At: '" + text + "', " + text.Length + " vs " + max );
+				var diff = text.Length - max;
+				Debug.LogWarning( "'" + text.Substring( text.Length - diff, diff ) + "' may be cut off!" );
+			}
+
 			// Display the text on screen!
 			CreateContentView( text );
+			lines++;
+		}
+		// Force 3 lines always for layout purposes
+		while ( lines < 3 )
+		{
+			CreateContentView( "" );
+			lines++;
 		}
 
 		// Display all the choices, if there are any!
@@ -68,14 +140,6 @@ public class InkHandler : MonoBehaviour
 					OnClickChoiceButton( choice );
 				} );
 			}
-		}
-		// If we've read all the content and there's no choices, the story is finished!
-		else
-		{
-			Button choice = CreateChoiceView("End of story.\nRestart?");
-			choice.onClick.AddListener( delegate {
-				StartStory();
-			} );
 		}
 	}
 
@@ -158,4 +222,13 @@ public class InkHandler : MonoBehaviour
 	{
 		return ( GetChoiceIndex( choice ) != -1 );
 	}
+	#endregion
+
+	#region Variables
+	public void PortraitObserver( string variableName, object newValue )
+	{
+		Debug.Log( variableName + " " + newValue );
+		PortraitUpdater.Instance.GetComponent<SpriteRenderer>().enabled = true;
+	}
+	#endregion
 }

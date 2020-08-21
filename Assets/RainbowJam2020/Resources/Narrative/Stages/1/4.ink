@@ -1,7 +1,8 @@
+VAR portrait = false
 
-I think there'll be an ink file for each story part, then this has redirects to each port possible, which will show the responses from these two people being linked
-so up here is the introduction, the person calls and
-asks the operator for a bread
+This is character 4!
+so up here is the introduction, the person
+calls and asks the operator for a bread
 
 + [1]
 -> Port1
@@ -16,11 +17,14 @@ asks the operator for a bread
 
 === Port1 ===
 This person cannot supply bread!
+dev note: all portraits enabled now
+~ portrait = true
 
 -> END
 
 === Port2 ===
-Mama mia its the baker person! Bread incoming!
+Mama mia its the baker person!
+Bread incoming!
 
 -> END
 

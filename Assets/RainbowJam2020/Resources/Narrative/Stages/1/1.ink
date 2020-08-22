@@ -39,7 +39,7 @@ I am a fascism and breads are illegal!
 -> END
 
 === Port7 ===
-I am number seven :)
+Cat woz ere
 
 -> END
 

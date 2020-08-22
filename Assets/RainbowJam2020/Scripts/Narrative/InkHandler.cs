@@ -51,6 +51,11 @@ public class InkHandler : MonoBehaviour
 
 		// Check variables
 		story.ObserveVariable( "portrait", PortraitObserver );
+		if ( story.variablesState.GlobalVariableExistsWithName( "win" ) )
+		{
+			story.ObserveVariable( "win", EndObserver );
+			story.ObserveVariable( "lose", EndObserver );
+		}
 	}
 
 	public void StopStory()
@@ -96,7 +101,7 @@ public class InkHandler : MonoBehaviour
 
 		// Read all the content until we can't continue any more
 		int lines = 0;
-		while ( story.canContinue )
+		while ( story && story.canContinue )
 		{
 			// Continue gets the next line of the story
 			string text = story.Continue ();
@@ -129,7 +134,7 @@ public class InkHandler : MonoBehaviour
 		}
 
 		// Display all the choices, if there are any!
-		if ( story.currentChoices.Count > 0 )
+		if ( story && story.currentChoices.Count > 0 )
 		{
 			for ( int i = 0; i < story.currentChoices.Count; i++ )
 			{
@@ -229,6 +234,11 @@ public class InkHandler : MonoBehaviour
 	{
 		Debug.Log( variableName + " " + newValue );
 		PortraitUpdater.Instance.GetComponent<SpriteRenderer>().enabled = true;
+	}
+
+	public void EndObserver( string variableName, object newValue )
+	{
+		Game.Instance.OnSwitchOutcome( variableName == "win" );
 	}
 	#endregion
 }

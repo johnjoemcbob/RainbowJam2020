@@ -111,7 +111,13 @@ public class Switch : MonoBehaviour
 
 	public void SetLit( bool lit )
 	{
+		if ( !lit && Pressed )
+		{
+			SetPressed( false );
+		}
+
 		Lit = lit;
+
 		UpdateSprite();
 	}
 
@@ -135,5 +141,25 @@ public class Switch : MonoBehaviour
 		{
 			parent.GetChild( index - 1 ).GetComponent<Switch>().SetLit( true );
 		}
+	}
+
+	public static int CountLit()
+	{
+		int count = 0;
+			var parent = FindObjectOfType<Switch>().transform.parent;
+			foreach ( Transform child in parent )
+			{
+				if ( child.GetComponent<Switch>().Lit )
+				{
+					count++;
+				}
+			}
+		return count;
+	}
+
+	public static Switch Get( int index )
+	{
+		var parent = FindObjectOfType<Switch>().transform.parent;
+		return parent.GetChild( index ).GetComponent<Switch>();
 	}
 }

@@ -1,8 +1,6 @@
 VAR portrait = false
-VAR win = false
-VAR lose = false
 
-This is character 1...
+This is character 4!
 so up here is the introduction, the person
 calls and asks the operator for a bread
 
@@ -27,14 +25,12 @@ dev note: all portraits enabled now
 === Port2 ===
 Mama mia its the baker person!
 Bread incoming!
-~ win = true
 
 -> END
 
 === Port3 ===
 Not only do I have no bread,
 I am a fascism and breads are illegal!
-~ lose = true
 
 -> END
 

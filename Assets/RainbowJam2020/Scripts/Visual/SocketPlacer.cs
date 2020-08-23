@@ -21,6 +21,13 @@ public class SocketPlacer : MonoBehaviour
     {
         if ( sockets.Length != Sockets )
 		{
+			// Find the sockets
+			sockets = new GameObject[transform.childCount];
+			foreach ( Transform child in transform )
+			{
+				sockets[child.GetSiblingIndex()] = child.gameObject;
+			}
+
 			// Delete any old first
 			for ( int soc = 0; soc < sockets.Length; soc++ )
 			{

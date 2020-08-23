@@ -58,6 +58,9 @@ public class Switch : MonoBehaviour
 		// And get the correct sprite for this switch index
 		var index = transform.GetSiblingIndex();
 		GetComponentInChildren<SpriteRenderer>().sprite = array[index];
+
+		// Extra glow overlay
+		GetComponentsInChildren<SpriteRenderer>( true )[1].enabled = Lit;
 	}
 
 	public void SetPressed( bool press )
@@ -83,10 +86,11 @@ public class Switch : MonoBehaviour
 			{
 				CurrentSwitch = null;
 			}
-			// Portraits
+			// Portraits/Name
 			if ( press )
 			{
 				PortraitUpdater.Instance.SetPortrait( Number );
+				CharacterNameText.Instance.Set( Game.CharacterNames[Number-1] );
 			}
 			else
 			{

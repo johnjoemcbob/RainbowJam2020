@@ -1,10 +1,8 @@
-VAR portrait = false
-VAR win = false
-VAR lose = false
+INCLUDE ../../variables.ink
 
 This is character 1...
-so up here is the introduction, the person
-calls and asks the operator for a bread
+Take me to {character2}
+that I might speak with them!
 
 + [1]
 -> Port1

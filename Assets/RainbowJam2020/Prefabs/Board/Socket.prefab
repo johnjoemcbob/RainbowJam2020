@@ -189,6 +189,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Port
       objectReference: {fileID: 0}
+    - target: {fileID: 3448271078911518070, guid: 27b669d90b0a6114a9e9063b2c0e48fc, type: 3}
+      propertyPath: m_Radius
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 3448271078911518070, guid: 27b669d90b0a6114a9e9063b2c0e48fc, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6105453848990885737, guid: 27b669d90b0a6114a9e9063b2c0e48fc, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6232076746017649758, guid: 27b669d90b0a6114a9e9063b2c0e48fc, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.027

@@ -36,7 +36,7 @@ public class Socket : MonoBehaviour
 
 			//var pitch = Random.Range( 0.8f, 1.2f );
 			var pitch = 0.4f + ( (float) transform.GetSiblingIndex() / transform.parent.childCount ) * 1.2f;
-			StaticHelpers.SpawnAudioSource( Jingle, Vector3.zero, pitch, 0.2f );
+			StaticHelpers.SpawnAudioSource( Jingle, Vector3.zero, pitch, 0.1f );
 		}
 	}
 }

@@ -310,9 +310,9 @@ public class Wire : MonoBehaviour
 		}
 	}
 
-	public void Drop()
+	public void Drop( bool forcehome = false )
 	{
-		if ( Port.Hovered )
+		if ( Port.Hovered && !forcehome )
 		{
 			CurrentHeld.TryAddPort( Port.Hovered );
 		}

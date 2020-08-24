@@ -26,6 +26,7 @@ public class InkHandler : MonoBehaviour
 	public Story story;
 
 	private Coroutine Refreshing;
+	private bool WaitingForMore = false;
 
 	#region MonoBehaviour
 	private void Awake()
@@ -55,6 +56,13 @@ public class InkHandler : MonoBehaviour
 		{
 			story.ObserveVariable( "win", EndObserver );
 			story.ObserveVariable( "lose", EndObserver );
+		}
+		if ( story.variablesState.GlobalVariableExistsWithName( "character1" ) )
+		{
+			for ( int cha = 0; cha < Game.CHARACTERS; cha++ )
+			{
+				Game.CharacterNames[cha] = story.variablesState.GetVariableWithName( "character" + ( cha + 1 ) ).ToString();
+			}
 		}
 	}
 
@@ -99,21 +107,30 @@ public class InkHandler : MonoBehaviour
 		// Remove all the UI on screen
 		RemoveChildren();
 
+		WaitingForMore = false;
 		// Read all the content until we can't continue any more
 		int lines = 0;
 		while ( story && story.canContinue )
 		{
+			// Only 3 at a time
+			lines++;
+			if ( lines > 3 )
+			{
+				WaitingForMore = true;
+				break;
+			}
+
 			// Continue gets the next line of the story
 			string text = story.Continue ();
 			// This removes any white space from the text.
 			text = text.Trim();
+			// . signifies a blank line
+			if ( text == "." )
+			{
+				text = "";
+			}
 
 			// Check valid
-			if ( lines > 3 )
-			{
-				Debug.LogError( "Error in story, too many lines! At: '" + text + "'" );
-				break;
-			}
 			var max = 46;
 			if ( text.Length > max )
 			{
@@ -124,7 +141,7 @@ public class InkHandler : MonoBehaviour
 
 			// Display the text on screen!
 			CreateContentView( text );
-			lines++;
+			Game.Instance.AddMessageReceived( text );
 		}
 		// Force 3 lines always for layout purposes
 		while ( lines < 3 )
@@ -226,6 +243,14 @@ public class InkHandler : MonoBehaviour
 	public bool ContainsChoice( int choice )
 	{
 		return ( GetChoiceIndex( choice ) != -1 );
+	}
+
+	public void TryAdvance()
+	{
+		if ( WaitingForMore )
+		{
+			RefreshView();
+		}
 	}
 	#endregion
 

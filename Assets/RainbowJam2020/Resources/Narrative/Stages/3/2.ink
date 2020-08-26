@@ -1,49 +1,31 @@
-VAR portrait = false
-VAR win = false
-VAR lose = false
+INCLUDE ../../variables.ink
 
-This is character 1...
-so up here is the introduction, the person
-calls and asks the operator for a bread
 
-+ [1]
--> Port1
-+ [2]
--> Port2
-+ [3]
--> Port3
-+ [7]
--> Port7
-+ [8]
--> Port8
+Is this working? This is an emergency! If anybody is picking this up, I have people starving here!
+I need to be connected to a food supply, immediately! You have no idea how bad things are getting west of the ocean.
 
-=== Port1 ===
-This person cannot supply bread!
-dev note: all portraits enabled now
-~ portrait = true
 
--> END
++ [4]
+-> Port4
++ [13]
+-> Port13
++ [22]
+-> Port22
 
-=== Port2 ===
-Mama mia its the baker person!
-Bread incoming!
+=== Port4 ===
+Thank you. I know it’s a big ask to trust me, but a lot of the people I’m leading are only alive because of you.
 ~ win = true
 
 -> END
 
-=== Port3 ===
-Not only do I have no bread,
-I am a fascism and breads are illegal!
-~ lose = true
+=== Port13 ===
+Thank you. I know it’s a big ask to trust me, but a lot of the people I’m leading are only alive because of you.
+~ win = true
 
 -> END
 
-=== Port7 ===
-I am number seven :)
-
--> END
-
-=== Port8 ===
-I am number eight and I am the winner
+=== Port22 ===
+Thank you. I know it’s a big ask to trust me, but a lot of the people I’m leading are only alive because of you.
+~ win = true
 
 -> END

@@ -64,18 +64,20 @@ public class InkHandler : MonoBehaviour
 		{
 			for ( int cha = 0; cha < Game.CHARACTERS; cha++ )
 			{
-				var name = story.variablesState.GetVariableWithName( "character" + ( cha + 1 ) ).ToString();
+				var variable = "character" + ( cha + 1 );
+				var name = story.variablesState.GetVariableWithName( variable ).ToString();
 				Game.Instance.SetCharacterName( cha, name );
+				story.ObserveVariable( variable, NameObserver );
 			}
 		}
 		if ( story.variablesState.GlobalVariableExistsWithName( "portrait1" ) )
 		{
 			for ( int cha = 0; cha < Game.CHARACTERS; cha++ )
 			{
-				var name = "portrait" + ( cha + 1 );
-				var portrait = story.variablesState.GetVariableWithName( name ).ToString() == "1";
+				var variable = "portrait" + ( cha + 1 );
+				var portrait = story.variablesState.GetVariableWithName( variable ).ToString() == "1";
 				Game.Instance.SetCharacterPortrait( cha, portrait );
-				story.ObserveVariable( name, PortraitObserver );
+				story.ObserveVariable( variable, PortraitObserver );
 			}
 		}
 	}
@@ -194,7 +196,6 @@ public class InkHandler : MonoBehaviour
 		}
 	}
 
-	// Creates a textbox showing the the line of text
 	void CreateContentView( string text )
 	{
 		Text storyText = Instantiate (textPrefab) as Text;
@@ -202,25 +203,6 @@ public class InkHandler : MonoBehaviour
 		storyText.transform.SetParent( UIParent.transform, false );
 	}
 
-	// Creates a button showing the choice text
-	Button CreateChoiceView( string text )
-	{
-		// Creates the button from a prefab
-		Button choice = Instantiate (buttonPrefab) as Button;
-		choice.transform.SetParent( UIParent.transform, false );
-
-		// Gets the text from the button prefab
-		Text choiceText = choice.GetComponentInChildren<Text> ();
-		choiceText.text = text;
-
-		// Make the button expand to fit the text
-		HorizontalLayoutGroup layoutGroup = choice.GetComponent <HorizontalLayoutGroup> ();
-		layoutGroup.childForceExpandHeight = false;
-
-		return choice;
-	}
-
-	// Destroys all the children of this gameobject (all the UI)
 	void RemoveChildren()
 	{
 		int childCount = UIParent.transform.childCount;
@@ -275,6 +257,10 @@ public class InkHandler : MonoBehaviour
 			RefreshView();
 			return true;
 		}
+		else
+		{
+			DialogueMover.Instance.Hide();
+		}
 		return false;
 	}
 	#endregion
@@ -285,13 +271,20 @@ public class InkHandler : MonoBehaviour
 		Game.Instance.OnSwitchOutcome( variableName == "win" );
 	}
 
+	public void NameObserver( string variableName, object newValue )
+	{
+		string name = newValue.ToString();
+		var cha = int.Parse( variableName.Replace( "character", "" ) );
+		Game.Instance.SetCharacterName( cha - 1, name );
+	}
+
 	public void PortraitObserver( string variableName, object newValue )
 	{
 		var portrait = newValue.ToString() == "1";
 		var cha = int.Parse( variableName.Replace( "portrait", "" ) );
-		Game.Instance.SetCharacterPortrait( cha, portrait );
+		Game.Instance.SetCharacterPortrait( cha - 1, portrait );
 		// TODO UPDATE VISUAL ALSO
-		PortraitUpdater.Instance.SetPortrait( cha );
+		PortraitUpdater.Instance.SetPortrait( cha - 1 );
 	}
 	#endregion
 }

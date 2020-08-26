@@ -13,7 +13,10 @@ public class ButtonAdvance : MonoBehaviour
 
 	public void OnClick()
 	{
-		InkHandler.Instance.TryAdvance();
-		Game.Instance.TryAdvanceFinishCharacter();
+		bool consumed = InkHandler.Instance.TryAdvance();
+		if ( !consumed )
+		{
+			Game.Instance.TryAdvanceFinishCharacter();
+		}
 	}
 }

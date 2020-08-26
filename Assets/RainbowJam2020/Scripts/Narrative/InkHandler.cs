@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using Ink.Runtime;
 
 public class InkHandler : MonoBehaviour
@@ -27,8 +28,8 @@ public class InkHandler : MonoBehaviour
 
 	private Coroutine Refreshing;
 	private bool WaitingForMore = false;
-	private string LeftoverText = "";
 	private bool ForceNewLine = false;
+	List<string> PreparedLines = new List<string>();
 
 	#region MonoBehaviour
 	private void Awake()
@@ -50,6 +51,7 @@ public class InkHandler : MonoBehaviour
 	{
 		story = new Story( inkJSONAsset.text );
 		if ( OnCreateStory != null ) OnCreateStory( story );
+		PreparedLines.Clear();
 		RefreshView();
 
 		// Check variables
@@ -100,6 +102,8 @@ public class InkHandler : MonoBehaviour
 	{
 		DialogueMover.Instance.Hide();
 
+		PrepareNextStorySegment();
+
 		yield return new WaitForSeconds( 5 / DialogueMover.Instance.Speed );
 
 		if ( story )
@@ -122,8 +126,7 @@ public class InkHandler : MonoBehaviour
 		WaitingForMore = false;
 		// Read all the content until we can't continue any more
 		int lines = 0;
-		bool storyAdvance = ( story && story.canContinue );
-		while ( storyAdvance || LeftoverText != "" )
+		while ( PreparedLines.Count > 0 )
 		{
 			// Only 3 at a time
 			lines++;
@@ -135,53 +138,27 @@ public class InkHandler : MonoBehaviour
 			var max = 42;
 
 			// Continue gets the next line of the story
-			string text = "";
-				if ( storyAdvance )
-				{
-					text = story.Continue();
-				}
+			string text = PreparedLines[0];
 			// This removes any white space from the text.
-			if ( text.Contains( Environment.NewLine ) )
-			{
-				Debug.Log( "YERP" );
-			}
-
 			text = text.Trim();
-			// Add any previously leftover text to the start of this new line
-			string defaultline = text;
-			if ( LeftoverText != "" )
-			{
-				// Short lines have line breaks, so place the leftover text here and next line will be 'this one'
-				if ( ForceNewLine || defaultline.Length < max )
-				{
-					text = LeftoverText;
-					LeftoverText = defaultline;
-					ForceNewLine = !ForceNewLine;
-				}
-				else
-				{
-					text = LeftoverText + " " + text;
-					LeftoverText = "";
-					ForceNewLine = false;
-				}
-			}
-			// . signifies a blank line
-			if ( text == "." )
-			{
-				text = "";
-			}
 
 			// Check valid
 			if ( text.Length > max )
 			{
-				//Debug.LogWarning( "Possible issue in story, too many characters! At: '" + text + "', " + text.Length + " vs " + max );
 				var diff = text.Length - max;
-				//Debug.LogWarning( "'" + text.Substring( text.Length - diff, diff ) + "' may be cut off!" );
 
 				// Find last space before this
 				string cut = text.Substring( 0, max );
 				int space = cut.LastIndexOf( ' ' );
-				LeftoverText = text.Substring( space + 1 );
+				string leftover = text.Substring( space + 1 );
+				if ( PreparedLines.Count > 1 )
+				{
+					PreparedLines[1] = leftover + " " + PreparedLines[1];
+				}
+				else
+				{
+					PreparedLines.Add( leftover );
+				}
 				text = text.Substring( 0, space );
 			}
 
@@ -189,7 +166,7 @@ public class InkHandler : MonoBehaviour
 			CreateContentView( text );
 			Game.Instance.AddMessageReceived( text );
 
-			storyAdvance = ( story && story.canContinue );
+			PreparedLines.RemoveAt( 0 );
 		}
 		// Force 3 lines always for layout purposes
 		while ( lines < 3 )
@@ -197,27 +174,24 @@ public class InkHandler : MonoBehaviour
 			CreateContentView( "" );
 			lines++;
 		}
-
-		// Display all the choices, if there are any!
-		if ( story && story.currentChoices.Count > 0 )
-		{
-			for ( int i = 0; i < story.currentChoices.Count; i++ )
-			{
-				Choice choice = story.currentChoices [i];
-				Button button = CreateChoiceView (choice.text.Trim ());
-				// Tell the button what to do when we press it
-				button.onClick.AddListener( delegate {
-					OnClickChoiceButton( choice );
-				} );
-			}
-		}
 	}
 
-	// When we click the choice button, tell the story to choose that choice!
-	void OnClickChoiceButton( Choice choice )
+	void PrepareNextStorySegment()
 	{
-		story.ChooseChoiceIndex( choice.index );
-		RefreshView();
+		while ( story && story.canContinue )
+		{
+			// Continue gets the next line of the story
+			string text = story.Continue();
+			// This removes any white space from the text.
+			text = text.Trim();
+			// . signifies a blank line
+			if ( text == "." )
+			{
+				text = "";
+			}
+
+			PreparedLines.Add( text );
+		}
 	}
 
 	// Creates a textbox showing the the line of text
@@ -262,6 +236,7 @@ public class InkHandler : MonoBehaviour
 		if ( index >= 0 && index < story.currentChoices.Count )
 		{
 			story.ChooseChoiceIndex( index );
+			PreparedLines.Clear();
 			RefreshView();
 			return true;
 		}
@@ -293,12 +268,14 @@ public class InkHandler : MonoBehaviour
 		return ( GetChoiceIndex( choice ) != -1 );
 	}
 
-	public void TryAdvance()
+	public bool TryAdvance()
 	{
 		if ( WaitingForMore )
 		{
 			RefreshView();
+			return true;
 		}
+		return false;
 	}
 	#endregion
 

@@ -2,48 +2,17 @@ VAR portrait = false
 VAR win = false
 VAR lose = false
 
-This is character 1...
-so up here is the introduction, the person
-calls and asks the operator for a bread
+Hello. Did I send this properly? Please tell me if I didn’t send this properly. If it even got through...wait, I should explain! The farmers’ pay hasn’t come through, so they needed a scribe to get in touch with the government, and I’m...almost one.
+
+Anyway, can you put me through to your boss? I’m sure there’s just been a mix-up...
+
 
 + [1]
 -> Port1
-+ [2]
--> Port2
-+ [3]
--> Port3
-+ [7]
--> Port7
-+ [8]
--> Port8
+
 
 === Port1 ===
-This person cannot supply bread!
-dev note: all portraits enabled now
-~ portrait = true
-
--> END
-
-=== Port2 ===
-Mama mia its the baker person!
-Bread incoming!
+I knew he’d understand once I explained it to him! Thank you for connecting me!
 ~ win = true
-
--> END
-
-=== Port3 ===
-Not only do I have no bread,
-I am a fascism and breads are illegal!
-~ lose = true
-
--> END
-
-=== Port7 ===
-I am number seven :)
-
--> END
-
-=== Port8 ===
-I am number eight and I am the winner
 
 -> END

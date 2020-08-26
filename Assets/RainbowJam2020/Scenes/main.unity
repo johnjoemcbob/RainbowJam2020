@@ -8038,6 +8038,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19b974483bd94564794fbf985a1f23eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BlankPortrait: {fileID: 21300000, guid: c85a33679293cc6478d213cb8fb798ba, type: 3}
   Portraits:
   - {fileID: 21300000, guid: e399b93817312fb42ae10b72ca48d9ee, type: 3}
   - {fileID: 21300000, guid: c85a33679293cc6478d213cb8fb798ba, type: 3}

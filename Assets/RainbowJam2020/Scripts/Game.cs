@@ -7,14 +7,13 @@ public class Game : MonoBehaviour
 	public static Game Instance;
 
 	public const int CHARACTERS = 8;
-	public static string[] CharacterNames = new string[CHARACTERS];
 
 	#region Structs
 	struct CharacterState
 	{
 		public List<string> Messages;
+		public string Name;
 		public bool PortraitUnlocked;
-		public bool NameUnlocked;
 	}
 	#endregion
 
@@ -45,18 +44,14 @@ public class Game : MonoBehaviour
 		{
 			CharacterStates.Add( new CharacterState() );
 		}
-	}
-
-	void Start()
-    {
 		StartStage( Stage );
-    }
+	}
 	#endregion
 
 	#region Stage
 	public void NextStage()
 	{
-		CharacterStates = StageCharacterStates;
+		ShallowCopyCharacterStates( CharacterStates, StageCharacterStates );
 
 		StartStage( Stage + 1 );
 		StartTransition();
@@ -73,7 +68,7 @@ public class Game : MonoBehaviour
 	{
 		Stage = stage;
 
-		ShallowCopyCharacterStates();
+		ShallowCopyCharacterStates( StageCharacterStates, CharacterStates );
 
 		// Find all characters for this stage
 		CharacterStories = new Dictionary<int, TextAsset>();
@@ -146,10 +141,10 @@ public class Game : MonoBehaviour
 		StageCharacterStates[character].Messages.Add( msg );
 	}
 
-	void ShallowCopyCharacterStates()
+	void ShallowCopyCharacterStates( List<CharacterState> to, List<CharacterState> from )
 	{
-		StageCharacterStates.Clear();
-		foreach ( var character in CharacterStates )
+		to.Clear();
+		foreach ( var character in from )
 		{
 			CharacterState state = new CharacterState();
 			{
@@ -161,11 +156,39 @@ public class Game : MonoBehaviour
 						state.Messages.Add( msg );
 					}
 				}
-				state.NameUnlocked = character.NameUnlocked;
+				state.Name = character.Name;
 				state.PortraitUnlocked = character.PortraitUnlocked;
 			}
-			StageCharacterStates.Add( state );
+			to.Add( state );
 		}
+	}
+
+	public void SetCharacterName( int character, string name )
+	{
+		var state = StageCharacterStates[character];
+		{
+			state.Name = name;
+		}
+		StageCharacterStates[character] = state;
+	}
+
+	public string GetCharacterName( int character )
+	{
+		return StageCharacterStates[character].Name;
+	}
+
+	public void SetCharacterPortrait( int character, bool portrait )
+	{
+		var state = StageCharacterStates[character];
+		{
+			state.PortraitUnlocked = portrait;
+		}
+		StageCharacterStates[character] = state;
+	}
+
+	public bool GetCharacterPortrait( int character )
+	{
+		return StageCharacterStates[character].PortraitUnlocked;
 	}
 	#endregion
 

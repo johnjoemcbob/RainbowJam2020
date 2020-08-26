@@ -76,6 +76,10 @@ public class PortraitUpdater : MonoBehaviour
 		{
 			character = 0;
 		}
+		if ( character > 0 && !Game.Instance.GetCharacterPortrait( character - 2 ) )
+		{
+			character = 0;
+		}
 
 		SpriteRenderers[GetNotMain()].GetComponent<SpriteRenderer>().sprite = Portraits[character];
 		StartSwitch();

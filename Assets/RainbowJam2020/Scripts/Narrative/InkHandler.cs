@@ -27,6 +27,8 @@ public class InkHandler : MonoBehaviour
 
 	private Coroutine Refreshing;
 	private bool WaitingForMore = false;
+	private string LeftoverText = "";
+	private bool ForceNewLine = false;
 
 	#region MonoBehaviour
 	private void Awake()
@@ -51,7 +53,6 @@ public class InkHandler : MonoBehaviour
 		RefreshView();
 
 		// Check variables
-		story.ObserveVariable( "portrait", PortraitObserver );
 		if ( story.variablesState.GlobalVariableExistsWithName( "win" ) )
 		{
 			story.ObserveVariable( "win", EndObserver );
@@ -61,7 +62,18 @@ public class InkHandler : MonoBehaviour
 		{
 			for ( int cha = 0; cha < Game.CHARACTERS; cha++ )
 			{
-				Game.CharacterNames[cha] = story.variablesState.GetVariableWithName( "character" + ( cha + 1 ) ).ToString();
+				var name = story.variablesState.GetVariableWithName( "character" + ( cha + 1 ) ).ToString();
+				Game.Instance.SetCharacterName( cha, name );
+			}
+		}
+		if ( story.variablesState.GlobalVariableExistsWithName( "portrait1" ) )
+		{
+			for ( int cha = 0; cha < Game.CHARACTERS; cha++ )
+			{
+				var name = "portrait" + ( cha + 1 );
+				var portrait = story.variablesState.GetVariableWithName( name ).ToString() == "1";
+				Game.Instance.SetCharacterPortrait( cha, portrait );
+				story.ObserveVariable( name, PortraitObserver );
 			}
 		}
 	}
@@ -110,7 +122,8 @@ public class InkHandler : MonoBehaviour
 		WaitingForMore = false;
 		// Read all the content until we can't continue any more
 		int lines = 0;
-		while ( story && story.canContinue )
+		bool storyAdvance = ( story && story.canContinue );
+		while ( storyAdvance || LeftoverText != "" )
 		{
 			// Only 3 at a time
 			lines++;
@@ -119,11 +132,39 @@ public class InkHandler : MonoBehaviour
 				WaitingForMore = true;
 				break;
 			}
+			var max = 42;
 
 			// Continue gets the next line of the story
-			string text = story.Continue ();
+			string text = "";
+				if ( storyAdvance )
+				{
+					text = story.Continue();
+				}
 			// This removes any white space from the text.
+			if ( text.Contains( Environment.NewLine ) )
+			{
+				Debug.Log( "YERP" );
+			}
+
 			text = text.Trim();
+			// Add any previously leftover text to the start of this new line
+			string defaultline = text;
+			if ( LeftoverText != "" )
+			{
+				// Short lines have line breaks, so place the leftover text here and next line will be 'this one'
+				if ( ForceNewLine || defaultline.Length < max )
+				{
+					text = LeftoverText;
+					LeftoverText = defaultline;
+					ForceNewLine = !ForceNewLine;
+				}
+				else
+				{
+					text = LeftoverText + " " + text;
+					LeftoverText = "";
+					ForceNewLine = false;
+				}
+			}
 			// . signifies a blank line
 			if ( text == "." )
 			{
@@ -131,17 +172,24 @@ public class InkHandler : MonoBehaviour
 			}
 
 			// Check valid
-			var max = 46;
 			if ( text.Length > max )
 			{
-				Debug.LogWarning( "Possible issue in story, too many characters! At: '" + text + "', " + text.Length + " vs " + max );
+				//Debug.LogWarning( "Possible issue in story, too many characters! At: '" + text + "', " + text.Length + " vs " + max );
 				var diff = text.Length - max;
-				Debug.LogWarning( "'" + text.Substring( text.Length - diff, diff ) + "' may be cut off!" );
+				//Debug.LogWarning( "'" + text.Substring( text.Length - diff, diff ) + "' may be cut off!" );
+
+				// Find last space before this
+				string cut = text.Substring( 0, max );
+				int space = cut.LastIndexOf( ' ' );
+				LeftoverText = text.Substring( space + 1 );
+				text = text.Substring( 0, space );
 			}
 
 			// Display the text on screen!
 			CreateContentView( text );
 			Game.Instance.AddMessageReceived( text );
+
+			storyAdvance = ( story && story.canContinue );
 		}
 		// Force 3 lines always for layout purposes
 		while ( lines < 3 )
@@ -255,15 +303,18 @@ public class InkHandler : MonoBehaviour
 	#endregion
 
 	#region Variables
-	public void PortraitObserver( string variableName, object newValue )
-	{
-		Debug.Log( variableName + " " + newValue );
-		PortraitUpdater.Instance.GetComponent<SpriteRenderer>().enabled = true;
-	}
-
 	public void EndObserver( string variableName, object newValue )
 	{
 		Game.Instance.OnSwitchOutcome( variableName == "win" );
+	}
+
+	public void PortraitObserver( string variableName, object newValue )
+	{
+		var portrait = newValue.ToString() == "1";
+		var cha = int.Parse( variableName.Replace( "portrait", "" ) );
+		Game.Instance.SetCharacterPortrait( cha, portrait );
+		// TODO UPDATE VISUAL ALSO
+		PortraitUpdater.Instance.SetPortrait( cha );
 	}
 	#endregion
 }

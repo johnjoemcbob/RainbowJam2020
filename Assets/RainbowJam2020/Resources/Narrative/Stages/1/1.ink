@@ -17,8 +17,7 @@ that I might speak with them!
 
 === Port1 ===
 This person cannot supply bread!
-dev note: all portraits enabled now
-~ portrait = true
+~ portrait1 = true
 
 -> END
 

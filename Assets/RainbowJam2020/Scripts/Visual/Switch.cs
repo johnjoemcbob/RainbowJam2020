@@ -90,7 +90,7 @@ public class Switch : MonoBehaviour
 			if ( press )
 			{
 				PortraitUpdater.Instance.SetPortrait( Number );
-				CharacterNameText.Instance.Set( Game.CharacterNames[Number-1] );
+				CharacterNameText.Instance.Set( Game.Instance.GetCharacterName( Number - 1 ) );
 			}
 			else
 			{

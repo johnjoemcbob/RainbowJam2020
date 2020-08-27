@@ -14,6 +14,8 @@ public class Port : MonoBehaviour
 
 	[HideInInspector]
 	public int Number = -1;
+	[HideInInspector]
+	public Wire CurrentPlugged;
 
 	private SpriteRenderer spriteRenderer;
 
@@ -27,9 +29,12 @@ public class Port : MonoBehaviour
 
 	private void OnMouseEnter()
 	{
-		Wire.TryHover();
-		spriteRenderer.color = ColourHover;
-		Hovered = this;
+		if ( !CurrentPlugged )
+		{
+			Wire.TryHover();
+			spriteRenderer.color = ColourHover;
+			Hovered = this;
+		}
 	}
 
 	private void OnMouseExit()

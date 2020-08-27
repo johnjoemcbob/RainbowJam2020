@@ -294,4 +294,19 @@ public class InkHandler : MonoBehaviour
 		Game.Instance.SetCharacterPortrait( cha - 1, portrait );
 	}
 	#endregion
+
+	public void Reset()
+	{
+		WaitingForMore = false;
+		PreparedLines.Clear();
+
+		// Stop coroutine
+		if ( Refreshing != null )
+		{
+			StopCoroutine( Refreshing );
+			Refreshing = null;
+		}
+
+		PortraitUpdater.Instance.SetPortrait( -1 );
+	}
 }

@@ -1,0 +1,20 @@
+INCLUDE ../../variables.ink
+You know, I don’t envy the whole sedentary lifestyle you’ve got down there much, but it does give you more time to sit down and make lovely little sculptures. Send some Egyptian art my way, and I’ll make sure to bulk up the next tin shipment.
+
+
+
+
+
+
++ [16]
+-> Port16
+
+=== Port16 ===
+Lovely stuff, lovely stuff indeed! How do you get the faces so detailed?
+
+
+
+
+~ win = true
+
+-> END

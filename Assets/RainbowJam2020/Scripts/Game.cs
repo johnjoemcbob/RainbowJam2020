@@ -29,7 +29,8 @@ public class Game : MonoBehaviour
 	private Dictionary<int, TextAsset> CharacterStories;
 	private List<CharacterState> CharacterStates = new List<CharacterState>();
 	private List<CharacterState> StageCharacterStates = new List<CharacterState>();
-	private int CurrentStory = -1;
+	[HideInInspector]
+	public int CurrentStory = -1;
 
 	private float WaitingForEnd = -1;
 	private bool Won = false;
@@ -72,7 +73,7 @@ public class Game : MonoBehaviour
 
 		// Find all characters for this stage
 		CharacterStories = new Dictionary<int, TextAsset>();
-		for ( int character = 1; character < 9; character++ )
+		for ( int character = 1; character <= CHARACTERS; character++ )
 		{
 			Object res = Resources.Load( "Narrative/Stages/" + Stage + "/" + character );
 			if ( res )
@@ -81,14 +82,20 @@ public class Game : MonoBehaviour
 			}
 		}
 
-		// Light correct switches
-		Switch.LightSwitches( CharacterStories );
+		// Reset dialogue
+		InkHandler.Instance.WaitingForMore = false;
+		DialogueMover.Instance.Hide();
 
 		// Reset any wires
 		if ( Wire.CurrentHeld )
 		{
 			Wire.CurrentHeld.Drop( true );
 		}
+		Wire.UnPortAll();
+
+		// Light correct switches
+		WaitingForEnd = -1;
+		Switch.LightSwitches( CharacterStories );
 	}
 
 	public void TryAdvanceFinishCharacter()

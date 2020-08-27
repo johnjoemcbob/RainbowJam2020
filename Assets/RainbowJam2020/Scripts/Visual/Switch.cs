@@ -65,6 +65,8 @@ public class Switch : MonoBehaviour
 
 	public void SetPressed( bool press )
 	{
+		if ( InkHandler.Instance.WaitingForMore ) return;
+
 		if ( Lit )
 		{
 			// Remove from port if inside

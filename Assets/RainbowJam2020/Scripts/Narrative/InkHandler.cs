@@ -27,7 +27,8 @@ public class InkHandler : MonoBehaviour
 	public Story story;
 
 	private Coroutine Refreshing;
-	private bool WaitingForMore = false;
+	[HideInInspector]
+	public bool WaitingForMore = false;
 	private bool ForceNewLine = false;
 	List<string> PreparedLines = new List<string>();
 
@@ -137,7 +138,7 @@ public class InkHandler : MonoBehaviour
 				WaitingForMore = true;
 				break;
 			}
-			var max = 42;
+			var max = 40;
 
 			// Continue gets the next line of the story
 			string text = PreparedLines[0];
@@ -224,8 +225,17 @@ public class InkHandler : MonoBehaviour
 		}
 		else
 		{
-			Debug.Log( "I got nuffin to say to u" );
-			return false;
+			PreparedLines.Clear();
+			if ( choice == Game.Instance.CurrentStory )
+			{
+				PreparedLines.Add( "That's (that's) my (my) own (own) channel! (-channel)" );
+			}
+			else
+			{
+				PreparedLines.Add( "That's not what I asked for..." );
+			}
+			RefreshView();
+			return true;
 		}
 	}
 

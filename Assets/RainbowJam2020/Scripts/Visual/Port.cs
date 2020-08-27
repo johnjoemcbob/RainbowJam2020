@@ -22,7 +22,7 @@ public class Port : MonoBehaviour
 		spriteRenderer = GetComponentInChildren<SpriteRenderer>();
 
 		Number = transform.parent.GetSiblingIndex() + 1;
-		GetComponentInChildren<Text>().text = ( Number ).ToString();
+		//GetComponentInChildren<Text>().text = ( Number ).ToString();
 	}
 
 	private void OnMouseEnter()

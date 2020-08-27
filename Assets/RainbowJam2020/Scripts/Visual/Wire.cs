@@ -274,6 +274,8 @@ public class Wire : MonoBehaviour
 	#region Interactions
 	public void TryPickup( bool forced = false )
 	{
+		if ( InkHandler.Instance.WaitingForMore ) return;
+
 		if ( Switch.Pressed )
 		{
 			Pickup( forced );
@@ -388,6 +390,15 @@ public class Wire : MonoBehaviour
 		}
 
 		PlayClip( Clip_Remove );
+	}
+
+	public static void UnPortAll()
+	{
+		foreach ( var wire in FindObjectsOfType<Wire>() )
+		{
+			wire.TryRemovePort();
+			wire.Retract();
+		}
 	}
 	#endregion
 

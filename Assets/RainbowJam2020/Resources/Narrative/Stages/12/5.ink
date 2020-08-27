@@ -9,6 +9,9 @@ I’m in a generous mood, and I hear you’re starting to experience troubles do
 
 + [2]
 -> Port2
++ [3]
+-> Port3
+
 
 === Port2 ===
 An unorthodox response, but they do seem in need. It will be sent at once. You know, I think I’m starting to get a read on you. You’re not an arm of the state at all anymore, are you?
@@ -16,5 +19,14 @@ An unorthodox response, but they do seem in need. It will be sent at once. You k
 
 
 ~ win = true
+
+-> END
+
+=== Port3 ===
+~ character5 = "Failure!"
+~ portrait5 = false
+The shipment will be intercepted if it goes by official channels!
+
+~ lose = true
 
 -> END

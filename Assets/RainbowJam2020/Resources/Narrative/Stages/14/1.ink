@@ -9,6 +9,9 @@ If you have an ounce of loyalty to the crown, if you don’t want the glory of o
 
 + [1]
 -> Port1
++ [17]
+-> Port17
+
 
 === Port1 ===
 Of all the insolent…! When I get my hands on you--
@@ -16,5 +19,14 @@ Of all the insolent…! When I get my hands on you--
 
 
 ~ win = true
+
+-> END
+
+=== Port17 ===
+~ character1 = "Failure!"
+~ portrait1 = false
+Extra soldiers will let the Pharaoh slaughter the rebels!
+
+~ lose = true
 
 -> END

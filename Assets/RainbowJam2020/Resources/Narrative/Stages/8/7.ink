@@ -10,15 +10,26 @@ They have let the Sea Peoples turn their minds to sedition and dissent! Soldiers
 
 + [7]
 -> Port7
++ [17]
+-> Port17
+
 
 === Port7 ===
 ……………………………
 
 
-
-
-
-
 ~ win = true
 
 -> END
+
+=== Port17 ===
+~ character7 = "Failure!"
+~ portrait7 = false
+Those soldiers will slaughter the rebels!
+
+
+~ lose = true
+
+-> END
+
+

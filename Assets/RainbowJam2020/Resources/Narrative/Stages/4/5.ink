@@ -7,6 +7,12 @@ This is the high priestess of Knossos speaking. Requesting a shipment of bronze-
 
 + [19]
 -> Port19
++ [2]
+-> Port2
++ [9]
+-> Port9
+
+
 
 === Port19 ===
 Idamate bless you. We will be safe from the foreign marauders with this...are you certain you have heard nothing of the renegade?
@@ -16,3 +22,21 @@ Idamate bless you. We will be safe from the foreign marauders with this...are yo
 
 -> END
 
+
+=== Port2 ===
+~ character5 = "Failure!"
+~ portrait5 = false
+You gave the refugees away!
+
+~ lose = true
+
+-> END
+
+=== Port9 ===
+~ character5 = "Failure!"
+~ portrait5 = false
+Asujua said she won't accept anything less than bronze! Now who might be more flexible...
+
+~ lose = true
+
+-> END

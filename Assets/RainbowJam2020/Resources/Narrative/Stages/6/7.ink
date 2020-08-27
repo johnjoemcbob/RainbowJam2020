@@ -10,6 +10,8 @@ These are the words of Lukios, King of Mycenae. Our neighbouring cities are bese
 -> Port9
 + [10]
 -> Port10
++ [17]
+-> Port17
 
 === Port9 ===
 I suppose I was too caught up in metaphor to make my request more specific. I will accept what you have sent, if it was indeed in earnest, and execute the foreign conspirators by my own power. But do not toy with me. My temper is short, my wrath terrible.
@@ -24,3 +26,14 @@ I suppose I was too caught up in metaphor to make my request more specific. I wi
 ~ win = true
 
 -> END
+
+=== Port17 ===
+~ character7 = "Failure!"
+~ portrait7 = false
+
+Those soldiers will kill the rebels!
+
+~ lose = true
+
+-> END
+

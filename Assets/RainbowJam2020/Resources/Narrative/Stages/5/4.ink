@@ -10,6 +10,8 @@ Hello, or...greetings? Ahh, what’s the...look, it’s me. The farmers’ pay i
 -> Port10
 + [19]
 -> Port19
++ [1]
+-> Port1
 
 === Port9 ===
 I know that was you, not your boss. Clearly there’s enough to go around...what’s the point of having those big stockpiles if they don’t share when we need it? So much for obligation. At least I can trust you, if not the government.
@@ -31,4 +33,14 @@ I know that was you, not your boss. Clearly there’s enough to go around...what
 ~ win = true
 
 -> END
+
+=== Port1 ===
+~ character4 = "Failure!"
+~ portrait4 = false
+Nakht said not to disturb him during this stage!
+
+~ lose = true
+
+-> END
+
 

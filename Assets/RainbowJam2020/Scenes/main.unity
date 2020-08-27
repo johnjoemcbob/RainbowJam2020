@@ -10353,7 +10353,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 11456674, guid: a281d46f48b307b49af7ca8784823d9a, type: 3}
       propertyPath: m_Text
-      value: Asijaka
+      value: Switchboard
       objectReference: {fileID: 0}
     - target: {fileID: 11456674, guid: a281d46f48b307b49af7ca8784823d9a, type: 3}
       propertyPath: m_Color.r
@@ -12506,7 +12506,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 709e223c66b4b344092e8a67ad30f2b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Stage: 1
+  Stage: 3
   thing: {fileID: 0}
   CurrentStory: -1
 --- !u!4 &1466924456

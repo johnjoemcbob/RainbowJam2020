@@ -47,7 +47,6 @@ public class InkHandler : MonoBehaviour
 	#endregion
 
 	#region Story
-	// Creates a new Story object with the compiled story which we can then play!
 	public void StartStory()
 	{
 		story = new Story( inkJSONAsset.text );
@@ -293,8 +292,6 @@ public class InkHandler : MonoBehaviour
 		var portrait = newValue.ToString() == "1";
 		var cha = int.Parse( variableName.Replace( "portrait", "" ) );
 		Game.Instance.SetCharacterPortrait( cha - 1, portrait );
-		// TODO UPDATE VISUAL ALSO
-		PortraitUpdater.Instance.SetPortrait( cha - 1 );
 	}
 	#endregion
 }

@@ -177,6 +177,12 @@ public class Game : MonoBehaviour
 			state.Name = name;
 		}
 		StageCharacterStates[character] = state;
+
+		// Update visuals if currently active
+		if ( CurrentStory - 1 == character )
+		{
+			CharacterNameText.Instance.Set( Game.Instance.GetCharacterName( CurrentStory - 1 ) );
+		}
 	}
 
 	public string GetCharacterName( int character )
@@ -191,6 +197,12 @@ public class Game : MonoBehaviour
 			state.PortraitUnlocked = portrait;
 		}
 		StageCharacterStates[character] = state;
+
+		// Update visuals if currently active
+		if ( CurrentStory - 1 == character )
+		{
+			PortraitUpdater.Instance.SetPortrait( CurrentStory );
+		}
 	}
 
 	public bool GetCharacterPortrait( int character )

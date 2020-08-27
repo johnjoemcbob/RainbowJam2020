@@ -173,6 +173,7 @@ MonoBehaviour:
   ColourValid: {r: 0.3466536, g: 0.7735849, b: 0.5098713, a: 0.5019608}
   ColourDefault: {r: 0.30980393, g: 0.30980393, b: 0.30980393, a: 0}
   Number: -1
+  CurrentPlugged: {fileID: 0}
 --- !u!58 &6916812
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -318,6 +319,7 @@ MonoBehaviour:
   ColourValid: {r: 0.3466536, g: 0.7735849, b: 0.5098713, a: 0.5019608}
   ColourDefault: {r: 0.30980393, g: 0.30980393, b: 0.30980393, a: 0}
   Number: -1
+  CurrentPlugged: {fileID: 0}
 --- !u!58 &56719519
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -828,6 +830,7 @@ MonoBehaviour:
   ColourValid: {r: 0.3466536, g: 0.7735849, b: 0.5098713, a: 0.5019608}
   ColourDefault: {r: 0.30980393, g: 0.30980393, b: 0.30980393, a: 0}
   Number: -1
+  CurrentPlugged: {fileID: 0}
 --- !u!58 &154691484
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1072,6 +1075,7 @@ MonoBehaviour:
   ColourValid: {r: 0.3466536, g: 0.7735849, b: 0.5098713, a: 0.5019608}
   ColourDefault: {r: 0.30980393, g: 0.30980393, b: 0.30980393, a: 0}
   Number: -1
+  CurrentPlugged: {fileID: 0}
 --- !u!58 &241843977
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1319,6 +1323,7 @@ MonoBehaviour:
   ColourValid: {r: 0.3466536, g: 0.7735849, b: 0.5098713, a: 0.5019608}
   ColourDefault: {r: 0.30980393, g: 0.30980393, b: 0.30980393, a: 0}
   Number: -1
+  CurrentPlugged: {fileID: 0}
 --- !u!58 &289575111
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1601,6 +1606,7 @@ MonoBehaviour:
   ColourValid: {r: 0.3466536, g: 0.7735849, b: 0.5098713, a: 0.5019608}
   ColourDefault: {r: 0.30980393, g: 0.30980393, b: 0.30980393, a: 0}
   Number: -1
+  CurrentPlugged: {fileID: 0}
 --- !u!58 &312954126
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2688,6 +2694,7 @@ MonoBehaviour:
   ColourValid: {r: 0.3466536, g: 0.7735849, b: 0.5098713, a: 0.5019608}
   ColourDefault: {r: 0.30980393, g: 0.30980393, b: 0.30980393, a: 0}
   Number: -1
+  CurrentPlugged: {fileID: 0}
 --- !u!58 &493601031
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -3526,6 +3533,7 @@ MonoBehaviour:
   ColourValid: {r: 0.3466536, g: 0.7735849, b: 0.5098713, a: 0.5019608}
   ColourDefault: {r: 0.30980393, g: 0.30980393, b: 0.30980393, a: 0}
   Number: -1
+  CurrentPlugged: {fileID: 0}
 --- !u!58 &555856688
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -3849,6 +3857,7 @@ MonoBehaviour:
   ColourValid: {r: 0.3466536, g: 0.7735849, b: 0.5098713, a: 0.5019608}
   ColourDefault: {r: 0.30980393, g: 0.30980393, b: 0.30980393, a: 0}
   Number: -1
+  CurrentPlugged: {fileID: 0}
 --- !u!58 &578949757
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -5136,6 +5145,7 @@ MonoBehaviour:
   ColourValid: {r: 0.3466536, g: 0.7735849, b: 0.5098713, a: 0.5019608}
   ColourDefault: {r: 0.30980393, g: 0.30980393, b: 0.30980393, a: 0}
   Number: -1
+  CurrentPlugged: {fileID: 0}
 --- !u!58 &766600717
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -8506,6 +8516,7 @@ MonoBehaviour:
   ColourValid: {r: 0.3466536, g: 0.7735849, b: 0.5098713, a: 0.5019608}
   ColourDefault: {r: 0.30980393, g: 0.30980393, b: 0.30980393, a: 0}
   Number: -1
+  CurrentPlugged: {fileID: 0}
 --- !u!58 &1008082913
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -8720,6 +8731,7 @@ MonoBehaviour:
   ColourValid: {r: 0.3466536, g: 0.7735849, b: 0.5098713, a: 0.5019608}
   ColourDefault: {r: 0.30980393, g: 0.30980393, b: 0.30980393, a: 0}
   Number: -1
+  CurrentPlugged: {fileID: 0}
 --- !u!58 &1041803919
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -10164,6 +10176,7 @@ MonoBehaviour:
   ColourValid: {r: 0.3466536, g: 0.7735849, b: 0.5098713, a: 0.5019608}
   ColourDefault: {r: 0.30980393, g: 0.30980393, b: 0.30980393, a: 0}
   Number: -1
+  CurrentPlugged: {fileID: 0}
 --- !u!58 &1175477182
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -10312,6 +10325,7 @@ MonoBehaviour:
   ColourValid: {r: 0.3466536, g: 0.7735849, b: 0.5098713, a: 0.5019608}
   ColourDefault: {r: 0.30980393, g: 0.30980393, b: 0.30980393, a: 0}
   Number: -1
+  CurrentPlugged: {fileID: 0}
 --- !u!58 &1191678339
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -10508,6 +10522,7 @@ MonoBehaviour:
   ColourValid: {r: 0.3466536, g: 0.7735849, b: 0.5098713, a: 0.5019608}
   ColourDefault: {r: 0.30980393, g: 0.30980393, b: 0.30980393, a: 0}
   Number: -1
+  CurrentPlugged: {fileID: 0}
 --- !u!58 &1216229305
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -10574,6 +10589,7 @@ MonoBehaviour:
   ColourValid: {r: 0.3466536, g: 0.7735849, b: 0.5098713, a: 0.5019608}
   ColourDefault: {r: 0.30980393, g: 0.30980393, b: 0.30980393, a: 0}
   Number: -1
+  CurrentPlugged: {fileID: 0}
 --- !u!58 &1228964014
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -10826,6 +10842,7 @@ MonoBehaviour:
   ColourValid: {r: 0.3466536, g: 0.7735849, b: 0.5098713, a: 0.5019608}
   ColourDefault: {r: 0.30980393, g: 0.30980393, b: 0.30980393, a: 0}
   Number: -1
+  CurrentPlugged: {fileID: 0}
 --- !u!58 &1252023830
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -10897,6 +10914,7 @@ MonoBehaviour:
   ColourValid: {r: 0.3466536, g: 0.7735849, b: 0.5098713, a: 0.5019608}
   ColourDefault: {r: 0.30980393, g: 0.30980393, b: 0.30980393, a: 0}
   Number: -1
+  CurrentPlugged: {fileID: 0}
 --- !u!58 &1264479000
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -11042,6 +11060,7 @@ MonoBehaviour:
   ColourValid: {r: 0.3466536, g: 0.7735849, b: 0.5098713, a: 0.5019608}
   ColourDefault: {r: 0.30980393, g: 0.30980393, b: 0.30980393, a: 0}
   Number: -1
+  CurrentPlugged: {fileID: 0}
 --- !u!58 &1320167620
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -11108,6 +11127,7 @@ MonoBehaviour:
   ColourValid: {r: 0.3466536, g: 0.7735849, b: 0.5098713, a: 0.5019608}
   ColourDefault: {r: 0.30980393, g: 0.30980393, b: 0.30980393, a: 0}
   Number: -1
+  CurrentPlugged: {fileID: 0}
 --- !u!58 &1336845186
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -12149,6 +12169,7 @@ MonoBehaviour:
   ColourValid: {r: 0.3466536, g: 0.7735849, b: 0.5098713, a: 0.5019608}
   ColourDefault: {r: 0.30980393, g: 0.30980393, b: 0.30980393, a: 0}
   Number: -1
+  CurrentPlugged: {fileID: 0}
 --- !u!58 &1432375876
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -13725,6 +13746,7 @@ MonoBehaviour:
   ColourValid: {r: 0.3466536, g: 0.7735849, b: 0.5098713, a: 0.5019608}
   ColourDefault: {r: 0.30980393, g: 0.30980393, b: 0.30980393, a: 0}
   Number: -1
+  CurrentPlugged: {fileID: 0}
 --- !u!58 &1586733819
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -14179,6 +14201,7 @@ MonoBehaviour:
   ColourValid: {r: 0.3466536, g: 0.7735849, b: 0.5098713, a: 0.5019608}
   ColourDefault: {r: 0.30980393, g: 0.30980393, b: 0.30980393, a: 0}
   Number: -1
+  CurrentPlugged: {fileID: 0}
 --- !u!58 &1733970611
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -14707,6 +14730,7 @@ MonoBehaviour:
   ColourValid: {r: 0.3466536, g: 0.7735849, b: 0.5098713, a: 0.5019608}
   ColourDefault: {r: 0.30980393, g: 0.30980393, b: 0.30980393, a: 0}
   Number: -1
+  CurrentPlugged: {fileID: 0}
 --- !u!58 &1804688345
 CircleCollider2D:
   m_ObjectHideFlags: 0

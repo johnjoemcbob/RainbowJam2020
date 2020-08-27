@@ -364,6 +364,7 @@ public class Wire : MonoBehaviour
 		if ( success )
 		{
 			Port = port;
+			Port.CurrentPlugged = this;
 			CurrentState = State.Socketed;
 			PlayClip( Clip_Drop );
 		}
@@ -383,6 +384,7 @@ public class Wire : MonoBehaviour
 
 	public void RemovePort( bool forced = false )
 	{
+		Port.CurrentPlugged = null;
 		Port = null;
 		if ( !forced )
 		{

@@ -70,11 +70,11 @@ public class Switch : MonoBehaviour
 		if ( Lit )
 		{
 			// Remove from port if inside
-			if ( !press && Wire.Port != null )
-			{
-				Wire.TryPickup( true );
-				Wire.TryDrop();
-			}
+			//if ( !press && Wire.Port != null )
+			//{
+			//	Wire.TryPickup( true );
+			//	Wire.TryDrop();
+			//}
 			// Only one at a time!
 			if ( press )
 			{

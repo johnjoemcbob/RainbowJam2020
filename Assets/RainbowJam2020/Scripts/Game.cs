@@ -61,7 +61,6 @@ public class Game : MonoBehaviour
 	public void ResetStage()
 	{
 		StartStage( Stage );
-		DialogueMover.Instance.Hide();
 		StartTransition();
 	}
 
@@ -82,16 +81,16 @@ public class Game : MonoBehaviour
 			}
 		}
 
-		// Reset dialogue
-		InkHandler.Instance.WaitingForMore = false;
-		DialogueMover.Instance.Hide();
-
 		// Reset any wires
 		if ( Wire.CurrentHeld )
 		{
 			Wire.CurrentHeld.Drop( true );
 		}
 		Wire.UnPortAll();
+
+		// Reset dialogue
+		InkHandler.Instance.Reset();
+		DialogueMover.Instance.Hide();
 
 		// Light correct switches
 		WaitingForEnd = -1;

@@ -1,7 +1,12 @@
 INCLUDE ../../variables.ink
-It’s as I feared. Er, I mean, the King wishes you to send a shipment of meat. I guess Dagan forbid the royal diet gets debased to the level of us regular people!
 
-Please do send it, though. We need everything we can get.
+It’s as I feared. Er, I mean, the King
+wishes you to send a shipment of meat.
+...
+I guess Dagan forbid the royal diet gets
+debased to the level of us regular
+people!
+Do send it, though. We need all we can get.
 
 
 

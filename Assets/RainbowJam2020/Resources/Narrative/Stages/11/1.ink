@@ -1,5 +1,11 @@
 INCLUDE ../../variables.ink
-The farms aren’t producing enough! What we do have, I don’t know where it’s going! Everyone’s complaining about ‘fair treatment’ all of a sudden! After everything I’ve done to maintain order! And now earthquakes! Just put me through to SOMEONE with influence, will you?!
+
+The farms are underproducing! What we
+have, I don’t know where it’s going!
+All complaining about ‘fair treatment’!
+After all I’ve done to maintain order!
+And where's our tin?! Argh! Just put
+me through to SOMEONE with influence!
 
 
 
@@ -21,7 +27,12 @@ The farms aren’t producing enough! What we do have, I don’t know where it’
 -> Port8
 
 === Port6 ===
-I suppose I can’t be furious at YOU for following the letter of my instruction, but know that I AM furious. That...was the most irritating conversation I have ever had the displeasure of engaging in. I didn’t learn a single thing. Actually, I think I somehow know less now.
+
+That. Was the most irritating
+conversation I've ever had the
+misfortune of engaging in.
+I didn’t learn a single thing.
+Actually, I think I somehow know less now.
 
 
 ~ win = true

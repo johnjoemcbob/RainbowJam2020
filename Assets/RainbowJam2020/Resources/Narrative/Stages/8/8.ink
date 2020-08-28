@@ -1,5 +1,11 @@
 INCLUDE ../../variables.ink
-Another fine day, eh? Well, not if you’re a Greek, but the misfortunes of another never fail to cheer me up. Something else that never fails is that good, good Egyptian gold. Right now I’m hungry for some more, you hear?
+
+Another fine day, eh? Well, not if you’re a
+Greek, but the misfortunes of another never
+fail to cheer me up.
+Something else that never fails is good,
+good Egyptian gold. Right now I’m hungry
+for some more, you hear?
 
 
 
@@ -39,7 +45,12 @@ Another fine day, eh? Well, not if you’re a Greek, but the misfortunes of anot
 
 
 === Port9 ===
-Deny me my gold, will you? After all we’ve worked to build? Ridiculous! Aren’t you the land where gold flows like rainwater? Fine, see where this attitude gets you! Egypt won’t see a scrap of tin while I have anything to say about it!
+Deny me my gold, will you? Ridiculous!
+Aren’t you the land where gold flows
+like rainwater?
+Fine, see where this attitude gets you!
+Egypt won’t see a scrap of tin while I
+have anything to say about it!
 
 
 ~ win = true
@@ -47,7 +58,12 @@ Deny me my gold, will you? After all we’ve worked to build? Ridiculous! Aren�
 -> END
 
 === Port10 ===
-Deny me my gold, will you? After all we’ve worked to build? Ridiculous! Aren’t you the land where gold flows like rainwater? Fine, see where this attitude gets you! Egypt won’t see a scrap of tin while I have anything to say about it!
+Deny me my gold, will you? Ridiculous!
+Aren’t you the land where gold flows
+like rainwater?
+Fine, see where this attitude gets you!
+Egypt won’t see a scrap of tin while I
+have anything to say about it!
 
 
 ~ win = true
@@ -55,7 +71,12 @@ Deny me my gold, will you? After all we’ve worked to build? Ridiculous! Aren�
 -> END
 
 === Port11 ===
-Deny me my gold, will you? After all we’ve worked to build? Ridiculous! Aren’t you the land where gold flows like rainwater? Fine, see where this attitude gets you! Egypt won’t see a scrap of tin while I have anything to say about it!
+Deny me my gold, will you? Ridiculous!
+Aren’t you the land where gold flows
+like rainwater?
+Fine, see where this attitude gets you!
+Egypt won’t see a scrap of tin while I
+have anything to say about it!
 
 
 ~ win = true
@@ -63,7 +84,12 @@ Deny me my gold, will you? After all we’ve worked to build? Ridiculous! Aren�
 -> END
 
 === Port12 ===
-Deny me my gold, will you? After all we’ve worked to build? Ridiculous! Aren’t you the land where gold flows like rainwater? Fine, see where this attitude gets you! Egypt won’t see a scrap of tin while I have anything to say about it!
+Deny me my gold, will you? Ridiculous!
+Aren’t you the land where gold flows
+like rainwater?
+Fine, see where this attitude gets you!
+Egypt won’t see a scrap of tin while I
+have anything to say about it!
 
 
 ~ win = true
@@ -71,7 +97,12 @@ Deny me my gold, will you? After all we’ve worked to build? Ridiculous! Aren�
 -> END
 
 === Port13 ===
-Deny me my gold, will you? After all we’ve worked to build? Ridiculous! Aren’t you the land where gold flows like rainwater? Fine, see where this attitude gets you! Egypt won’t see a scrap of tin while I have anything to say about it!
+Deny me my gold, will you? Ridiculous!
+Aren’t you the land where gold flows
+like rainwater?
+Fine, see where this attitude gets you!
+Egypt won’t see a scrap of tin while I
+have anything to say about it!
 
 
 ~ win = true
@@ -79,7 +110,12 @@ Deny me my gold, will you? After all we’ve worked to build? Ridiculous! Aren�
 -> END
 
 === Port14 ===
-Deny me my gold, will you? After all we’ve worked to build? Ridiculous! Aren’t you the land where gold flows like rainwater? Fine, see where this attitude gets you! Egypt won’t see a scrap of tin while I have anything to say about it!
+Deny me my gold, will you? Ridiculous!
+Aren’t you the land where gold flows
+like rainwater?
+Fine, see where this attitude gets you!
+Egypt won’t see a scrap of tin while I
+have anything to say about it!
 
 
 ~ win = true
@@ -87,7 +123,12 @@ Deny me my gold, will you? After all we’ve worked to build? Ridiculous! Aren�
 -> END
 
 === Port17 ===
-Deny me my gold, will you? After all we’ve worked to build? Ridiculous! Aren’t you the land where gold flows like rainwater? Fine, see where this attitude gets you! Egypt won’t see a scrap of tin while I have anything to say about it!
+Deny me my gold, will you? Ridiculous!
+Aren’t you the land where gold flows
+like rainwater?
+Fine, see where this attitude gets you!
+Egypt won’t see a scrap of tin while I
+have anything to say about it!
 
 
 ~ win = true
@@ -95,7 +136,12 @@ Deny me my gold, will you? After all we’ve worked to build? Ridiculous! Aren�
 -> END
 
 === Port18 ===
-Deny me my gold, will you? After all we’ve worked to build? Ridiculous! Aren’t you the land where gold flows like rainwater? Fine, see where this attitude gets you! Egypt won’t see a scrap of tin while I have anything to say about it!
+Deny me my gold, will you? Ridiculous!
+Aren’t you the land where gold flows
+like rainwater?
+Fine, see where this attitude gets you!
+Egypt won’t see a scrap of tin while I
+have anything to say about it!
 
 
 ~ win = true
@@ -103,7 +149,12 @@ Deny me my gold, will you? After all we’ve worked to build? Ridiculous! Aren�
 -> END
 
 === Port19 ===
-Deny me my gold, will you? After all we’ve worked to build? Ridiculous! Aren’t you the land where gold flows like rainwater? Fine, see where this attitude gets you! Egypt won’t see a scrap of tin while I have anything to say about it!
+Deny me my gold, will you? Ridiculous!
+Aren’t you the land where gold flows
+like rainwater?
+Fine, see where this attitude gets you!
+Egypt won’t see a scrap of tin while I
+have anything to say about it!
 
 
 ~ win = true
@@ -111,15 +162,22 @@ Deny me my gold, will you? After all we’ve worked to build? Ridiculous! Aren�
 -> END
 
 === Port20 ===
-Deny me my gold, will you? After all we’ve worked to build? Ridiculous! Aren’t you the land where gold flows like rainwater? Fine, see where this attitude gets you! Egypt won’t see a scrap of tin while I have anything to say about it!
+~ character8 = "Failure!"
+~ portrait8 = false
+Nakht forbade any gold to leave Egypt!
 
 
-~ win = true
+~ lose = true
 
 -> END
 
 === Port21 ===
-Deny me my gold, will you? After all we’ve worked to build? Ridiculous! Aren’t you the land where gold flows like rainwater? Fine, see where this attitude gets you! Egypt won’t see a scrap of tin while I have anything to say about it!
+Deny me my gold, will you? Ridiculous!
+Aren’t you the land where gold flows
+like rainwater?
+Fine, see where this attitude gets you!
+Egypt won’t see a scrap of tin while I
+have anything to say about it!
 
 
 ~ win = true
@@ -127,7 +185,12 @@ Deny me my gold, will you? After all we’ve worked to build? Ridiculous! Aren�
 -> END
 
 === Port22 ===
-Deny me my gold, will you? After all we’ve worked to build? Ridiculous! Aren’t you the land where gold flows like rainwater? Fine, see where this attitude gets you! Egypt won’t see a scrap of tin while I have anything to say about it!
+Deny me my gold, will you? Ridiculous!
+Aren’t you the land where gold flows
+like rainwater?
+Fine, see where this attitude gets you!
+Egypt won’t see a scrap of tin while I
+have anything to say about it!
 
 
 ~ win = true
@@ -135,7 +198,12 @@ Deny me my gold, will you? After all we’ve worked to build? Ridiculous! Aren�
 -> END
 
 === Port23 ===
-Deny me my gold, will you? After all we’ve worked to build? Ridiculous! Aren’t you the land where gold flows like rainwater? Fine, see where this attitude gets you! Egypt won’t see a scrap of tin while I have anything to say about it!
+Deny me my gold, will you? Ridiculous!
+Aren’t you the land where gold flows
+like rainwater?
+Fine, see where this attitude gets you!
+Egypt won’t see a scrap of tin while I
+have anything to say about it!
 
 
 ~ win = true
@@ -143,7 +211,12 @@ Deny me my gold, will you? After all we’ve worked to build? Ridiculous! Aren�
 -> END
 
 === Port24 ===
-Deny me my gold, will you? After all we’ve worked to build? Ridiculous! Aren’t you the land where gold flows like rainwater? Fine, see where this attitude gets you! Egypt won’t see a scrap of tin while I have anything to say about it!
+Deny me my gold, will you? Ridiculous!
+Aren’t you the land where gold flows
+like rainwater?
+Fine, see where this attitude gets you!
+Egypt won’t see a scrap of tin while I
+have anything to say about it!
 
 
 ~ win = true

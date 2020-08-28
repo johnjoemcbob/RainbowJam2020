@@ -1,6 +1,13 @@
 INCLUDE ../../variables.ink
 
-Us again. We’ve got a sizeable group co-ordinated up here in Greece. If you can get some ships this way, we can join up with the main group. Then there might just be enough of us.
+~ character7 = "????"
+~ portrait7 = false
+
+Us again. We’ve got a sizeable group
+coordinated up in Greece. Can you get
+ships this way?
+If we can join with the main group,
+there might just be enough of us.
 
 
 

@@ -1,6 +1,9 @@
 INCLUDE ../../variables.ink
 
-I’m with the refugees, heading south. Please do everything you can. In my case, some scribes to help organise all these resources you’ve sent would be a blessing.
+Hello! Busy!
+I’m with the refugees, heading south.
+Please do everything you can.
+In my case, some scribes to help organise all these resources you’ve sent would be a blessing.
 
 
 

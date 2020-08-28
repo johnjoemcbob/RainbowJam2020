@@ -1,5 +1,11 @@
 INCLUDE ../../variables.ink
-It’s deteriorating here, too...more and more people are being cut off by the southern kingdoms’ isolationist policies. I mean, I guess you’re in one of those, but...look, is there anything you can do? These people are going to starve before long.
+
+It’s deteriorating here, too...more and
+more people are being cut off by the
+southern kingdoms’ isolationism.
+I mean, I guess you’re in one of those,
+but is there anything you can do? These
+people are going to starve before long.
 
 
 
@@ -18,18 +24,20 @@ It’s deteriorating here, too...more and more people are being cut off by the s
 
 
 === Port15 ===
-Appreciated. I hear things are starting to get tight there too, so I know you don’t have an infinite supply to draw on. But we’re saving a lot of people together.
-
-That’s the most important thing, in the end. We can choose to have each other’s backs, even if those in power won’t.
+Appreciated. I know things are tight
+there too, but we’re saving a lot of
+people together. That’s what's matters.
+We can choose to have each other’s backs, even if those in power won’t.
 
 ~ win = true
 
 -> END
 
 === Port22 ===
-Appreciated. I hear things are starting to get tight there too, so I know you don’t have an infinite supply to draw on. But we’re saving a lot of people together.
-
-That’s the most important thing, in the end. We can choose to have each other’s backs, even if those in power won’t.
+Appreciated. I know things are tight there
+too, but we’re saving a lot of people
+together. That’s the most important thing.
+We can choose to have each other’s backs, even if those in power won’t.
 
 ~ win = true
 
@@ -44,3 +52,11 @@ Satiah needs to be left alone for this stage!
 
 -> END
 
+=== Port13 ===
+~ character2 = "Failure!"
+~ portrait2 = false
+Someone else needs bread specifically!
+
+~ lose = true
+
+-> END

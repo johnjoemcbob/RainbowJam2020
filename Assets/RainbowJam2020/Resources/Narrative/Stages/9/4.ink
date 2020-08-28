@@ -1,6 +1,12 @@
 INCLUDE ../../variables.ink
 
-Hello! I heard about the gold lockdown the higher-ups arranged, but we haven’t spent all of what you sent us yet, and we’re still producing steadily. What I’m thinking is if you could connect us to any foreign traders, we might be able to do business directly, without having to wait for the palace to remember to pay us. You think you can do that?
+
+I heard about the gold lockdown, but we
+haven’t spent what you sent us yet, and
+we’re still producing steadily.
+What I’m thinking is if you could connect
+us to any foreign traders, we might be able
+to do business directly. You know anyone?
 
 
 
@@ -11,7 +17,10 @@ Hello! I heard about the gold lockdown the higher-ups arranged, but we haven’t
 
 
 === Port6 ===
-Now we’re in business! Finally we’ve got a steady source of income down here, at least until the state decides to actually take care of its people. We can trust this guy, right?
+We’re in business! Finally we’ve got a
+source of income down here, until the
+state decides to actually help us.
+We can trust this guy, right?
 
 
 ~ win = true

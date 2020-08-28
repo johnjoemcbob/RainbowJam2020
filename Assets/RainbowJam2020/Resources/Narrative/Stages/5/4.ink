@@ -26,6 +26,13 @@ What’s the point of having stockpiles,
 if they don’t share when we need it?
 So much for obligation. At least I can
 trust you, if not the government.
+Only one person’s ever been so kind
+to me, but...I don’t think even you
+could find her. I wish she was here...
+Leadership doesn’t come easy to me, but
+I know she’d--sorry. Not your problem.
+I just don’t have anyone else to tell…
+
 
 ~ win = true
 
@@ -38,6 +45,13 @@ What’s the point of having stockpiles,
 if they don’t share when we need it?
 So much for obligation. At least I can
 trust you, if not the government.
+Only one person’s ever been so kind
+to me, but...I don’t think even you
+could find her. I wish she was here...
+Leadership doesn’t come easy to me, but
+I know she’d--sorry. Not your problem.
+I just don’t have anyone else to tell…
+
 
 
 ~ win = true
@@ -51,6 +65,13 @@ What’s the point of having stockpiles,
 if they don’t share when we need it?
 So much for obligation. At least I can
 trust you, if not the government.
+Only one person’s ever been so kind
+to me, but...I don’t think even you
+could find her. I wish she was here...
+Leadership doesn’t come easy to me, but
+I know she’d--sorry. Not your problem.
+I just don’t have anyone else to tell…
+
 
 ~ win = true
 

@@ -1,5 +1,8 @@
 INCLUDE ../../variables.ink
-May these words find you well. Please connect our priests with yours, so that we may exchange rites and divine a way through these unforeseen times.
+May these words find you well. Please
+connect our priests, so that we may
+exchange rites.
+Perhaps even divine a way through these unforeseen times.
 
 
 

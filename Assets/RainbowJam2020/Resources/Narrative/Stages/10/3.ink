@@ -1,5 +1,9 @@
 INCLUDE ../../variables.ink
-It’s just as I feared. I’ll drop the formalities--the shortages are getting serious. We need bread, and fast. Please don’t abandon us now.
+
+It’s just as I feared. I’ll drop the
+formalities--the shortages are getting
+serious. We need bread, and fast.
+Please don’t abandon us now.
 
 
 

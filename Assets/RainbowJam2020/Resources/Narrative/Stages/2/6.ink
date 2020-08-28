@@ -2,7 +2,7 @@ INCLUDE ../../variables.ink
 
 It’s your lucky day, friend! I've got an offer that'll make you rich beyond the wildest limits of your imagination!
 I just need a liiiittle bit of a starting investment in gold, and I can turn profits on it you won’t believe!
-C’mon, just have a little trust, all right? They say gold is like dust in Egypt, there’s gotta be some to go around…
+C’mon, have a little trust, yeah? They say gold is like dust in Egypt, there’s gotta be some to go around…
 
 
 + [6]

@@ -13933,8 +13933,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 709e223c66b4b344092e8a67ad30f2b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   Stage: 1
   Debug: 1
+=======
+  Stage: 8
+  thing: {fileID: 0}
+>>>>>>> 7d8ee6930f4935163a673207234cd863ffda1afe
   CurrentStory: -1
 --- !u!4 &1466924456
 Transform:

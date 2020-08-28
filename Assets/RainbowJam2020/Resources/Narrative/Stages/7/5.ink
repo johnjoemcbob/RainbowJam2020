@@ -1,5 +1,8 @@
 INCLUDE ../../variables.ink
-Crete may be beautiful, but an island lacks the abundance of wildlife of a larger country. Put some meat on the next trading boat, would you?
+
+Crete may be beautiful, but an island
+means a seafood heavy diet. Put some
+meat on the next boat, would you?
 
 
 

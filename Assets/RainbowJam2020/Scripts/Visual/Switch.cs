@@ -129,6 +129,8 @@ public class Switch : MonoBehaviour
 
 	private void OnMouseDown()
 	{
+		if ( Game.Instance.IsBlocked() ) return;
+
 		SetPressed( !Pressed );
 	}
 

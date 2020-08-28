@@ -43,7 +43,10 @@ public class Game : MonoBehaviour
 
 		for ( int character = 0; character < CHARACTERS; character++ )
 		{
-			CharacterStates.Add( new CharacterState() );
+			var state = new CharacterState();
+				state.Messages = new List<string>();
+				state.Messages.Add( "Stage 1" );
+			CharacterStates.Add( state );
 		}
 		StartStage( Stage );
 
@@ -55,6 +58,17 @@ public class Game : MonoBehaviour
 	public void NextStage()
 	{
 		ShallowCopyCharacterStates( CharacterStates, StageCharacterStates );
+
+		// Add stage headers to space message logs better
+		for ( int character = 0; character < CHARACTERS; character++ )
+		{
+			var state = CharacterStates[character];
+			{
+				state.Messages.Add( "" );
+				state.Messages.Add( "Stage " + ( Stage + 1 ) );
+			}
+			CharacterStates.Add( state );
+		}
 
 		StartStage( Stage + 1 );
 		StartTransition();
@@ -156,6 +170,15 @@ public class Game : MonoBehaviour
 		StageCharacterStates[character].Messages.Add( msg );
 	}
 
+	public List<string> GetCurrentMessageLog()
+	{
+		if ( CurrentStory != -1 )
+		{
+			return StageCharacterStates[CurrentStory - 1].Messages;
+		}
+		return new List<string>();
+	}
+
 	void ShallowCopyCharacterStates( List<CharacterState> to, List<CharacterState> from )
 	{
 		to.Clear();
@@ -242,4 +265,9 @@ public class Game : MonoBehaviour
 		Won = win;
 	}
 	#endregion
+
+	public bool IsBlocked()
+	{
+		return MessageLog.Instance.gameObject.activeSelf;
+	}
 }

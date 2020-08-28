@@ -30,6 +30,8 @@ public class Socket : MonoBehaviour
 
 	private void OnMouseEnter()
 	{
+		if ( Game.Instance.IsBlocked() ) return;
+
 		if ( t >= 1 )
 		{
 			t = 0.0f;

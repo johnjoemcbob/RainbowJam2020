@@ -37,6 +37,8 @@ public class PlugHead : MonoBehaviour
 
 	private void OnMouseDown()
 	{
+		if ( Game.Instance.IsBlocked() ) return;
+
 		Parent.TryPickup();
 	}
 }

@@ -8,6 +8,8 @@ public class Game : MonoBehaviour
 
 	public const int CHARACTERS = 8;
 
+	public static bool SoundsEnabled = false;
+
 	#region Structs
 	struct CharacterState
 	{
@@ -20,9 +22,7 @@ public class Game : MonoBehaviour
 	#region Variables - Public
 	[Header( "Varialbes" )]
 	public int Stage = 0;
-
-	[Header( "References" )]
-	public GameObject thing;
+	public bool Debug = false;
 	#endregion
 
 	#region Variables - Private
@@ -46,6 +46,8 @@ public class Game : MonoBehaviour
 			CharacterStates.Add( new CharacterState() );
 		}
 		StartStage( Stage );
+
+		SoundsEnabled = true;
 	}
 	#endregion
 
@@ -67,6 +69,8 @@ public class Game : MonoBehaviour
 	void StartStage( int stage )
 	{
 		Stage = stage;
+
+		SoundsEnabled = false;
 
 		ShallowCopyCharacterStates( StageCharacterStates, CharacterStates );
 
@@ -95,6 +99,8 @@ public class Game : MonoBehaviour
 		// Light correct switches
 		WaitingForEnd = -1;
 		Switch.LightSwitches( CharacterStories );
+
+		SoundsEnabled = true;
 	}
 
 	public void TryAdvanceFinishCharacter()
@@ -103,13 +109,16 @@ public class Game : MonoBehaviour
 		{
 			if ( Won )
 			{
-				// Unlight
-				Switch.Get( CurrentStory - 1 ).SetLit( false );
-
-				// Check for stage complete
-				if ( Switch.CountLit() == 0 )
+				if ( CurrentStory != -1 )
 				{
-					NextStage();
+					// Unlight
+					Switch.Get( CurrentStory - 1 ).SetLit( false );
+
+					// Check for stage complete
+					if ( Switch.CountLit() == 0 )
+					{
+						NextStage();
+					}
 				}
 			}
 			else

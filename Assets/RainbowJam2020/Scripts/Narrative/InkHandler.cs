@@ -57,6 +57,12 @@ public class InkHandler : MonoBehaviour
 		// Check variables
 		if ( story.variablesState.GlobalVariableExistsWithName( "win" ) )
 		{
+			// Check for win in no options dialogue
+			if ( story.variablesState.GetVariableWithName( "win" ).ToString() == "1" )
+			{
+				Game.Instance.OnSwitchOutcome( true );
+			}
+
 			story.ObserveVariable( "win", EndObserver );
 			story.ObserveVariable( "lose", EndObserver );
 		}
@@ -176,6 +182,12 @@ public class InkHandler : MonoBehaviour
 			CreateContentView( "" );
 			lines++;
 		}
+
+		// Catch a no choices ending
+		//if ( !WaitingForMore && story.currentChoices.Count == 0 )
+		//{
+		//	Game.Instance.OnSwitchOutcome( true );
+		//}
 	}
 
 	void PrepareNextStorySegment()

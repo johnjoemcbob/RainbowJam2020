@@ -406,8 +406,10 @@ public class Wire : MonoBehaviour
 
 	void PlayClip( AudioClip clip )
 	{
-		//AudioSource.PlayClipAtPoint( clip, Vector3.zero );
-		var pitch = 0.9f + ( transform.GetSiblingIndex() / transform.childCount ) * 0.2f;
-		StaticHelpers.SpawnAudioSource( clip, Vector3.zero, pitch );
+		if ( Game.SoundsEnabled )
+		{
+			var pitch = 0.9f + ( transform.GetSiblingIndex() / transform.childCount ) * 0.2f;
+			StaticHelpers.SpawnAudioSource( clip, Vector3.zero, pitch );
+		}
 	}
 }

@@ -26,6 +26,12 @@ public class DialogueMover : MonoBehaviour
     {
 		Hide();
 		SpriteMover.localPosition = TargetPos;
+
+		// Make transitions really fast when testing
+		if ( Game.Instance.Debug )
+		{
+			Speed = Speed * 100;
+		}
 	}
 
     void Update()

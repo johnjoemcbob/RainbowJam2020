@@ -1,6 +1,8 @@
 INCLUDE ../../variables.ink
 
-Good morning. If it still is by the time you read this. Slow days everywhere lately. What happened to work ethic?
+Good morning. If it still is by the time
+you read this. Slow days everywhere lately.
+What happened to work ethic?
 ...anyway. We’re going to need more manpower for the temple of Amun-Ra. Put me through to the builders.
 
 

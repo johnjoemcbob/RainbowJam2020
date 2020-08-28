@@ -2,7 +2,9 @@ INCLUDE ../../variables.ink
 
 
 
-Greetings to the Pharaoh, his land and his humble representative. I write on behalf of the great city of Ugarit.
+Greetings to the Pharaoh, his land
+and his humble representative. I write
+on behalf of the great city of Ugarit.
 It is the king’s wish that our spice trades be connected, for the prosperity of our two kingdoms.
 
 + [23]

@@ -3,8 +3,11 @@ INCLUDE ../../variables.ink
 ~ character2 = "????"
 ~ portrait2 = false
 
-Is this working? This is an emergency! If anybody is picking this up, I have people starving here!
-I need to be connected to a food supply, immediately! You have no idea how bad things are getting west of the ocean.
+Is this working? This is an emergency!
+If anybody is picking this up, I have
+people starving here!
+I need to be connected to a food supply,
+immediately! You have no idea how bad things are getting west of the ocean.
 
 
 + [4]

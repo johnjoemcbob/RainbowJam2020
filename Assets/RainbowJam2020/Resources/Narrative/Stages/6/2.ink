@@ -25,7 +25,7 @@ Thank you, truly. You’re making a huge
 difference. I appreciate you’re sticking
 your neck out by helping me.
 If I’m ever over that way, I’ll try
-and eeturn the favour, but until then
+and return the favour, but until then
 you’re these refugees’ lifeline.
 
 

@@ -54,6 +54,8 @@ foreign conspirators by my own power.
 Those soldiers will kill the rebels!
 Try interpreting his request more
 creatively...
+He asked for "blades". Maybe he
+should make his own!
 
 ~ lose = true
 

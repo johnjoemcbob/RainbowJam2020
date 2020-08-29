@@ -7,10 +7,21 @@ Câ€™mon, have a little trust, yeah? They say gold is like dust in Egypt, thereâ€
 
 + [6]
 -> Port6
++ [20]
+-> Port20
 
 === Port6 ===
 Hello? (Hello?) Is this on? (Is this on?) Why am I just- (Why am I just-) -getting my own words- (-my own words-)
 -coming back at me? (-back at me?) Ugh, did I break it? (-break it?)
 ~ win = true
+
+-> END
+
+=== Port20 ===
+~ character6 = "Failure!"
+~ portrait6 = false
+This guy's obviously screwing you! Maybe Nakht was right on this one...
+
+~ lose = true
 
 -> END

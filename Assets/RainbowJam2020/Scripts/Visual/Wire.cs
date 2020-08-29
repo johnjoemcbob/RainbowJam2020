@@ -117,7 +117,7 @@ public class Wire : MonoBehaviour
 		{
 			float rot_z = Mathf.Atan2(LastMoveDirection.y, LastMoveDirection.x) * Mathf.Rad2Deg;
 			var targetang = new Vector3( 0, 0, rot_z - 90 );
-				if ( CurrentState == State.Idle || CurrentState == State.Retract )
+				if ( CurrentState == State.Idle || CurrentState == State.Retract || Port != null )
 				{
 					// If retracting then lerp towards straight up
 					targetang.z = 0;

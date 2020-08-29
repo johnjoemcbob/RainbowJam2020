@@ -89,6 +89,8 @@ public class Game : MonoBehaviour
 				CharacterStates.Add( state );
 			}
 
+			Fader.Instance.GetComponentInChildren<Text>().text = @"Dawn
+of a new day";
 			StartStage( Stage + 1 );
 		}
 		else
@@ -127,6 +129,8 @@ public class Game : MonoBehaviour
 	public void ResetStage()
 	{
 		StartStage( Stage );
+		Fader.Instance.GetComponentInChildren<Text>().text = @"Restarting
+the day!";
 		StartTransition();
 	}
 

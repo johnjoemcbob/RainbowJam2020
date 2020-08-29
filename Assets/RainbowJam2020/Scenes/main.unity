@@ -492,7 +492,7 @@ SpriteRenderer:
   m_Size: {x: 38.399998, y: 21.599998}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &51965319
@@ -2810,7 +2810,7 @@ RectTransform:
   m_Father: {fileID: 1425934295}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
@@ -2848,7 +2848,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 386081051}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
   m_Name: 
@@ -2867,7 +2867,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 388342143}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
   m_Name: 
@@ -3472,7 +3472,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 444971606}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.38, y: 3.85, z: 0}
+  m_LocalPosition: {x: -13.59, y: 3.73, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 833933220}
@@ -3722,7 +3722,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 11456674, guid: a281d46f48b307b49af7ca8784823d9a, type: 3}
       propertyPath: m_Text
-      value: "1-{character1}\r\n2-{character2}\r\r\n3-{character3}\r\r\n4-{character4}\r\r\n5-{character5}\r\r\n6-{character6}\n7-{character7}\r\r\n8-{character8}\r\r\n9-Copper\r\n10-Tin\r\n11-Ships\r\n12-Carpenters\r"
+      value: "1-{character1}\r\n2-{character2}\r\r\n3-{character3}\r\r\n4-{character4}\r\r\n5-{character5}\r\r\n6-{character6}\n7-{character7}\r\r\n8-{character8}\r\r"
       objectReference: {fileID: 0}
     - target: {fileID: 22481992, guid: a281d46f48b307b49af7ca8784823d9a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3812,7 +3812,8 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1150111096, guid: a281d46f48b307b49af7ca8784823d9a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a281d46f48b307b49af7ca8784823d9a, type: 3}
 --- !u!224 &495236622 stripped
 RectTransform:
@@ -3824,20 +3825,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 162960, guid: a281d46f48b307b49af7ca8784823d9a, type: 3}
   m_PrefabInstance: {fileID: 495236621}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &495236624
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 495236623}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HorizontalFit: 0
-  m_VerticalFit: 2
 --- !u!114 &495236625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4131,7 +4118,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 8, y: 0}
-  m_SizeDelta: {x: -80, y: -512}
+  m_SizeDelta: {x: -80, y: -64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &523094230
 MonoBehaviour:
@@ -5357,7 +5344,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -6557,29 +6544,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 11456674, guid: a281d46f48b307b49af7ca8784823d9a, type: 3}
       propertyPath: m_Text
-      value: '13-Bread
-
-        14-Builders
-
-        15-Fruit
-
-        16-Art
-
-        17-Soldiers
-
-        18-Priests
-
-        19-Bronze
-
-        20-Gold
-
-        21-Cloth
-
-        22-Meat
-
-        23-Spice
-
-        24-Scribes'
+      value: "Copper\r-9\nTin\r-10\nShips\r-11\nCarpenters\r-12\nBread-13\nBuilders-14\nFruit-15\nArt-16\nSoldiers-17\nPriests-18\nBronze-19\nGold-20\nCloth-21\nMeat-22\nSpice-23\nScribes-24"
       objectReference: {fileID: 0}
     - target: {fileID: 22481992, guid: a281d46f48b307b49af7ca8784823d9a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7033,7 +6998,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19b974483bd94564794fbf985a1f23eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpeedMultiplier: 2
+  SpeedMultiplier: 2.5
   Portraits:
   - {fileID: 21300000, guid: e399b93817312fb42ae10b72ca48d9ee, type: 3}
   - {fileID: 21300000, guid: c85a33679293cc6478d213cb8fb798ba, type: 3}
@@ -11088,8 +11053,8 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: 1218973535
-  m_SortingOrder: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: -15
   m_TargetDisplay: 0
 --- !u!1001 &1059429027
 PrefabInstance:
@@ -15657,7 +15622,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1551517073}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.36, y: 4.56, z: 0}
+  m_LocalPosition: {x: 13.54, y: 4.35, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1051473771}

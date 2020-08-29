@@ -4,9 +4,9 @@ These are the words of Lukios, King of
 Mycenae. Our neighbouring cities are beset
 by encroaching raiders!
 Thieves of the lowest order who envy our
-wealth and splendor! Share your might with
-us! Let your blades be ours!
-Let all know who has power and who does not!
+wealth and splendor! Share your swords
+with us! Let your blades be ours!
+Let all know who is mighty and who is not!
 
 
 
@@ -54,6 +54,8 @@ foreign conspirators by my own power.
 Those soldiers will kill the rebels!
 Try interpreting his request more
 creatively...
+He asked for "blades". Maybe he
+should make his own!
 
 ~ lose = true
 

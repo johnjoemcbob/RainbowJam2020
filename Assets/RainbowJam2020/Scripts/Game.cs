@@ -223,6 +223,12 @@ public class Game : MonoBehaviour
 		}
 	}
 
+	public bool HasMessageReceived( string msg )
+	{
+		if ( CurrentStory == -1 ) return false;
+		return StageCharacterStates[CurrentStory - 1].Messages.Contains( msg );
+	}
+
 	public List<string> GetCurrentMessageLog()
 	{
 		if ( CurrentStory != -1 )

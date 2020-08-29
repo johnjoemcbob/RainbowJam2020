@@ -39,8 +39,11 @@ public class Port : MonoBehaviour
 
 	private void OnMouseExit()
 	{
-		Wire.TryUnHover();
-		Hovered = null;
+		if ( Hovered == this )
+		{
+			Wire.TryUnHover();
+			Hovered = null;
+		}
 	}
 
 	public void SetDefaultColour()

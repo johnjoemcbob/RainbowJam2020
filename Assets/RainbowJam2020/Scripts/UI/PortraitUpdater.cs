@@ -23,12 +23,15 @@ public class PortraitUpdater : MonoBehaviour
 	private SpriteRenderer SpriteRenderer;
 	private State CurrentState;
 	private Sprite NextSprite;
+	private Vector3 BasePos;
 
 	private void Awake()
 	{
 		Instance = this;
 
 		SpriteRenderer = GetComponent<SpriteRenderer>();
+
+		BasePos = transform.localPosition;
 	}
 
 	private void Update()
@@ -38,9 +41,9 @@ public class PortraitUpdater : MonoBehaviour
 			case State.Idle:
 				break;
 			case State.First90:
-				var y = -13;
-				transform.localPosition = Vector3.MoveTowards( transform.localPosition, new Vector3( 0, y, 0 ), Time.deltaTime * DialogueMover.Instance.Speed * SpeedMultiplier );
-				if ( transform.localPosition.y <= y )
+				var y = 13;
+				transform.localPosition = Vector3.MoveTowards( transform.localPosition, new Vector3( BasePos.x, y, 0 ), Time.deltaTime * DialogueMover.Instance.Speed * SpeedMultiplier );
+				if ( transform.localPosition.y >= y )
 				{
 					CurrentState = State.ChangeOrder;
 				}
@@ -50,8 +53,8 @@ public class PortraitUpdater : MonoBehaviour
 				CurrentState = State.Last90;
 				break;
 			case State.Last90:
-				transform.localPosition = Vector3.MoveTowards( transform.localPosition, new Vector3( 0, 0, 0 ), Time.deltaTime * DialogueMover.Instance.Speed * SpeedMultiplier );
-				if ( transform.localPosition.y >= 0 )
+				transform.localPosition = Vector3.MoveTowards( transform.localPosition, BasePos, Time.deltaTime * DialogueMover.Instance.Speed * SpeedMultiplier );
+				if ( transform.localPosition.y <= BasePos.y )
 				{
 					CurrentState = State.Idle;
 				}

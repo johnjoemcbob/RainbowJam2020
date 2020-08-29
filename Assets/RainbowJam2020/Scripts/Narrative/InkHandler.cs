@@ -131,7 +131,10 @@ public class InkHandler : MonoBehaviour
 		// Remove all the UI on screen
 		RemoveChildren();
 
+		var max = 40;
+
 		WaitingForMore = false;
+		bool hasprevious = false;
 		// Read all the content until we can't continue any more
 		int lines = 0;
 		while ( PreparedLines.Count > 0 )
@@ -143,12 +146,13 @@ public class InkHandler : MonoBehaviour
 				WaitingForMore = true;
 				break;
 			}
-			var max = 40;
 
 			// Continue gets the next line of the story
 			string text = PreparedLines[0];
-			// This removes any white space from the text.
-			text = text.Trim();
+
+			// Replace any weird characters
+			text = text.Replace( "…", "..." );
+			text = text.Replace( "‘", "'" );
 
 			// Check valid
 			if ( text.Length > max )
@@ -172,6 +176,10 @@ public class InkHandler : MonoBehaviour
 
 			// Display the text on screen!
 			CreateContentView( text );
+			if ( Game.Instance.HasMessageReceived( text ) )
+			{
+				hasprevious = true;
+			}
 			Game.Instance.AddMessageReceived( text );
 
 			PreparedLines.RemoveAt( 0 );
@@ -183,11 +191,11 @@ public class InkHandler : MonoBehaviour
 			lines++;
 		}
 
-		// Catch a no choices ending
-		//if ( !WaitingForMore && story.currentChoices.Count == 0 )
-		//{
-		//	Game.Instance.OnSwitchOutcome( true );
-		//}
+		// If this dialogue is being viewed again, just skip to the end!
+		if ( WaitingForMore && hasprevious )
+		{
+			RefreshView_Func();
+		}
 	}
 
 	void PrepareNextStorySegment()

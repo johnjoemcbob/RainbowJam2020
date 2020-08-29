@@ -239,11 +239,11 @@ public class InkHandler : MonoBehaviour
 			PreparedLines.Clear();
 			if ( choice == Game.Instance.CurrentStory )
 			{
-				PreparedLines.Add( "That's (that's) my (my) own (own) channel! (-channel)" );
+				PreparedLines.Add( Game.GENERIC_ECHO );
 			}
 			else
 			{
-				PreparedLines.Add( "That's not what I asked for..." );
+				PreparedLines.Add( Game.GENERIC_WRONG );
 			}
 			RefreshView();
 			return true;

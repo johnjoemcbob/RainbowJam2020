@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Game : MonoBehaviour
 {
 	public static Game Instance;
 
 	public const int CHARACTERS = 8;
+	public const string GENERIC_ECHO = "That's (that's) my (my) own (own) channel! (-channel)";
+	public const string GENERIC_WRONG = "That's not what I asked for...";
 
 	public static bool SoundsEnabled = false;
 
@@ -20,9 +23,12 @@ public class Game : MonoBehaviour
 	#endregion
 
 	#region Variables - Public
-	[Header( "Varialbes" )]
+	[Header( "Variables" )]
 	public int Stage = 0;
 	public bool Debug = false;
+
+	[Header( "References" )]
+	public GameObject EndScreen;
 	#endregion
 
 	#region Variables - Private
@@ -52,26 +58,70 @@ public class Game : MonoBehaviour
 
 		SoundsEnabled = true;
 	}
+
+	private void Update()
+	{
+		if ( Application.isEditor )
+		{
+			if ( Input.GetKeyDown( KeyCode.P ) )
+			{
+				NextStage();
+			}
+		}
+	}
 	#endregion
 
 	#region Stage
 	public void NextStage()
 	{
-		ShallowCopyCharacterStates( CharacterStates, StageCharacterStates );
-
-		// Add stage headers to space message logs better
-		for ( int character = 0; character < CHARACTERS; character++ )
+		if ( IsNextStageValid() )
 		{
-			var state = CharacterStates[character];
-			{
-				state.Messages.Add( "" );
-				state.Messages.Add( "Stage " + ( Stage + 1 ) );
-			}
-			CharacterStates.Add( state );
-		}
+			ShallowCopyCharacterStates( CharacterStates, StageCharacterStates );
 
-		StartStage( Stage + 1 );
+			// Add stage headers to space message logs better
+			for ( int character = 0; character < CHARACTERS; character++ )
+			{
+				var state = CharacterStates[character];
+				{
+					state.Messages.Add( "" );
+					state.Messages.Add( "Stage " + ( Stage + 1 ) );
+				}
+				CharacterStates.Add( state );
+			}
+
+			StartStage( Stage + 1 );
+		}
+		else
+		{
+			StartCoroutine( ShowEnd() );
+		}
 		StartTransition();
+	}
+
+	IEnumerator ShowEnd()
+	{
+		// This handles fade out/in by itself
+		Music.Instance.SetTrack( 1 );
+
+		Fader.Instance.GetComponentInChildren<Text>().text = "Victory!";
+
+		yield return new WaitForSeconds( 1 );
+
+		EndScreen.SetActive( true );
+	}
+
+	bool IsNextStageValid()
+	{
+		var stage = Stage + 1;
+		for ( int character = 1; character <= CHARACTERS; character++ )
+		{
+			Object res = Resources.Load( "Narrative/Stages/" + stage + "/" + character );
+			if ( res )
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public void ResetStage()
@@ -167,7 +217,10 @@ public class Game : MonoBehaviour
 				state.Messages = new List<string>();
 			StageCharacterStates[character] = state;
 		}
-		StageCharacterStates[character].Messages.Add( msg );
+		if ( !StageCharacterStates[character].Messages.Contains( msg ) && msg != GENERIC_ECHO && msg != GENERIC_WRONG )
+		{
+			StageCharacterStates[character].Messages.Add( msg );
+		}
 	}
 
 	public List<string> GetCurrentMessageLog()
@@ -268,6 +321,6 @@ public class Game : MonoBehaviour
 
 	public bool IsBlocked()
 	{
-		return MessageLog.Instance.gameObject.activeSelf;
+		return MessageLog.Instance.gameObject.activeSelf || EndScreen.activeSelf;
 	}
 }

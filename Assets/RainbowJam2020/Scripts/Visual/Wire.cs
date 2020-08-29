@@ -274,7 +274,11 @@ public class Wire : MonoBehaviour
 	#region Interactions
 	public void TryPickup( bool forced = false )
 	{
-		if ( InkHandler.Instance.WaitingForMore ) return;
+		if ( InkHandler.Instance.WaitingForMore )
+		{
+			ButtonAdvance.Highlight();
+			return;
+		}
 
 		if ( Switch.Pressed )
 		{

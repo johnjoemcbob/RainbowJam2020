@@ -22,7 +22,6 @@ public class MessageLog : MonoBehaviour
 
     void OnEnable()
     {
-		// TODO
 		// Clear old message log
 		foreach ( Transform child in MessageParent )
 		{
@@ -35,10 +34,21 @@ public class MessageLog : MonoBehaviour
 			var obj = Instantiate( MessagePrefab, MessageParent );
 			obj.GetComponent<Text>().text = msg;
 		}
+
+		StartCoroutine( ForceScrollDown() );
     }
 
 	void OnDisable()
 	{
 
+	}
+
+	IEnumerator ForceScrollDown()
+	{
+		// Wait for end of frame AND force update all canvases before setting to bottom.
+		yield return new WaitForEndOfFrame();
+		Canvas.ForceUpdateCanvases();
+		GetComponentInChildren<ScrollRect>().verticalNormalizedPosition = 0f;
+		Canvas.ForceUpdateCanvases();
 	}
 }

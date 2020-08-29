@@ -14,22 +14,21 @@ public class PortraitUpdater : MonoBehaviour
 
 	public static PortraitUpdater Instance;
 
+	[Header( "Variables" )]
+	public float SpeedMultiplier;
+
+	[Header( "Assets" )]
 	public Sprite[] Portraits;
 
-	private Transform[] SpriteRenderers;
-	private int Main = 0;
+	private SpriteRenderer SpriteRenderer;
 	private State CurrentState;
-
-	private float Speed = 180;
+	private Sprite NextSprite;
 
 	private void Awake()
 	{
 		Instance = this;
 
-		// Store references to the two renderers used for the rotation
-		SpriteRenderers = new Transform[2];
-		SpriteRenderers[0] = transform;
-		SpriteRenderers[1] = transform.GetChild( 0 );
+		SpriteRenderer = GetComponent<SpriteRenderer>();
 	}
 
 	private void Update()
@@ -39,28 +38,22 @@ public class PortraitUpdater : MonoBehaviour
 			case State.Idle:
 				break;
 			case State.First90:
-				transform.localEulerAngles = Vector3.MoveTowards( transform.localEulerAngles, new Vector3( 0, 90, 0 ), Time.deltaTime * Speed );
-				if ( transform.localEulerAngles.y >= 90 )
+				var y = -13;
+				transform.localPosition = Vector3.MoveTowards( transform.localPosition, new Vector3( 0, y, 0 ), Time.deltaTime * DialogueMover.Instance.Speed * SpeedMultiplier );
+				if ( transform.localPosition.y <= y )
 				{
 					CurrentState = State.ChangeOrder;
 				}
 				break;
 			case State.ChangeOrder:
-				SpriteRenderers[Main].GetComponent<SpriteRenderer>().sortingOrder = -15;
-				SpriteRenderers[GetNotMain()].GetComponent<SpriteRenderer>().sortingOrder = -14;
-				SpriteRenderers[GetNotMain()].localScale = new Vector3( -1, 1, 1 );
+				SpriteRenderer.sprite = NextSprite;
 				CurrentState = State.Last90;
 				break;
 			case State.Last90:
-				transform.localEulerAngles = Vector3.MoveTowards( transform.localEulerAngles, new Vector3( 0, 180, 0 ), Time.deltaTime * Speed );
-				if ( transform.localEulerAngles.y >= 180 )
+				transform.localPosition = Vector3.MoveTowards( transform.localPosition, new Vector3( 0, 0, 0 ), Time.deltaTime * DialogueMover.Instance.Speed * SpeedMultiplier );
+				if ( transform.localPosition.y >= 0 )
 				{
 					CurrentState = State.Idle;
-					Main = GetNotMain();
-
-					SpriteRenderers[Main].localEulerAngles = Vector3.zero;
-					SpriteRenderers[Main].localScale = new Vector3( 1, 1, 1 );
-					SpriteRenderers[GetNotMain()].localEulerAngles = new Vector3( 0, 180, 0 );
 				}
 				break;
 			default:
@@ -81,17 +74,15 @@ public class PortraitUpdater : MonoBehaviour
 			character = 0;
 		}
 
-		SpriteRenderers[GetNotMain()].GetComponent<SpriteRenderer>().sprite = Portraits[character];
+		NextSprite = Portraits[character];
 		StartSwitch();
 	}
 
 	void StartSwitch()
 	{
-		CurrentState = State.First90;
-	}
-
-	int GetNotMain()
-	{
-		return ( Main == 0 ) ? 1 : 0;
+		if ( SpriteRenderer.sprite != NextSprite )
+		{
+			CurrentState = State.First90;
+		}
 	}
 }

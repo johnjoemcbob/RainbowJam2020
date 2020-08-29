@@ -65,7 +65,11 @@ public class Switch : MonoBehaviour
 
 	public void SetPressed( bool press )
 	{
-		if ( InkHandler.Instance.WaitingForMore ) return;
+		if ( InkHandler.Instance.WaitingForMore )
+		{
+			ButtonAdvance.Highlight();
+			return;
+		}
 
 		if ( Lit )
 		{

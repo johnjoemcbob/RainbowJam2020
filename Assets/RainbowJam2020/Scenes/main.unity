@@ -14954,7 +14954,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 709e223c66b4b344092e8a67ad30f2b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Stage: 7
+  Stage: 1
   Debug: 0
   EndScreen: {fileID: 1350833051}
   CurrentStory: -1

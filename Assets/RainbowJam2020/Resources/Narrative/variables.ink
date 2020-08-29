@@ -1,5 +1,5 @@
 VAR character1 = "Nakht"
-VAR character2 = "Rusa"
+VAR character2 = "????"
 VAR character3 = "Iyuni"
 VAR character4 = "Satiah"
 VAR character5 = "Asujua"

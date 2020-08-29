@@ -67,6 +67,10 @@ public class Game : MonoBehaviour
 			{
 				NextStage();
 			}
+			if ( Input.GetKeyDown( KeyCode.O ) )
+			{
+				ResetStage();
+			}
 		}
 	}
 	#endregion
@@ -267,7 +271,12 @@ the day!";
 	public void SetCharacterName( int character, string name )
 	{
 		var state = StageCharacterStates[character];
+		if ( name.Contains( "?" ) && state.Name != null && !state.Name.Contains( "?" ) )
 		{
+		}
+		else
+		{
+			// Don't reset to unknown one the name is learned.. hopefully? IDk jam is almost over
 			state.Name = name;
 		}
 		StageCharacterStates[character] = state;

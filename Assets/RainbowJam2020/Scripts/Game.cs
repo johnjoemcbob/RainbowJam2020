@@ -61,6 +61,10 @@ public class Game : MonoBehaviour
 
 	private void Update()
 	{
+		if ( Input.GetKeyDown( KeyCode.Space ) )
+		{
+			ButtonAdvance.Instance.OnClick();
+		}
 		if ( Application.isEditor )
 		{
 			if ( Input.GetKeyDown( KeyCode.P ) )
@@ -225,7 +229,7 @@ the day!";
 				state.Messages = new List<string>();
 			StageCharacterStates[character] = state;
 		}
-		if ( !StageCharacterStates[character].Messages.Contains( msg ) && msg != GENERIC_ECHO && msg != GENERIC_WRONG )
+		if ( ( !StageCharacterStates[character].Messages.Contains( msg ) && msg != GENERIC_ECHO && msg != GENERIC_WRONG ) || msg != "" )
 		{
 			StageCharacterStates[character].Messages.Add( msg );
 		}

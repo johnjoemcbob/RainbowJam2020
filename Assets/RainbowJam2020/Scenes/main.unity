@@ -1976,7 +1976,7 @@ RectTransform:
   - {fileID: 73666374}
   - {fileID: 2085876222}
   m_Father: {fileID: 1350833052}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.25, y: 0.2}
   m_AnchorMax: {x: 0.75, y: 0.8}
@@ -9776,6 +9776,81 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1 &985595687
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 985595688}
+  - component: {fileID: 985595690}
+  - component: {fileID: 985595689}
+  m_Layer: 5
+  m_Name: Blur (Image)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &985595688
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 985595687}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1350833052}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.22, y: 0.135}
+  m_AnchorMax: {x: 0.78, y: 0.86}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &985595689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 985595687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 13e00331b6ce8d34e834ca8b5c6af724, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &985595690
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 985595687}
+  m_CullTransparentMesh: 0
 --- !u!1 &987450761
 GameObject:
   m_ObjectHideFlags: 0
@@ -12251,10 +12326,10 @@ PrefabInstance:
     - target: {fileID: 11456674, guid: a281d46f48b307b49af7ca8784823d9a, type: 3}
       propertyPath: m_Text
       value: "It was not like this everywhere. Out beyond Egypt, in the areas we
-        record as \u201Cfallen civilisations\u201D, there were doubtless people like
-        Rusa and Satiah--like you. In places like Greece and Cyprus, royal palaces
-        were burned, statues of rulers defaced, but food stockpiles left intact.\r\n\r\nWithout
-        the trappings of an upper class, these people weathered the \u2018dark age\u2019
+        record as \"fallen civilisations\", there were doubtless people like Rusa
+        and Satiah--like you. In places like Greece and Cyprus, royal palaces were
+        burned, statues of rulers defaced, but food stockpiles left intact.\r\n\r\nWithout
+        the trappings of an upper class, these people weathered the 'dark age\u2019
         ultimately wrought not by marauders, but climate change. Not like the man-made
         climate change we face today, but as unprecedented and catastrophic to them
         as it is to us now. Temperate regions froze or burned, walls crumbled, and
@@ -13207,6 +13282,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 353196597}
+  - {fileID: 985595688}
   - {fileID: 264793636}
   m_Father: {fileID: 647133160}
   m_RootOrder: 2
@@ -13959,15 +14035,25 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 11456674, guid: a281d46f48b307b49af7ca8784823d9a, type: 3}
       propertyPath: m_Text
-      value: "This game presents an \u2018alternate past\u2019. Not in the sense
-        of \u2018an ancient world with modern technology\u2019, but \u2018a world
-        where things reach a happy ending\u2019. Probably.\r\n\r\nIn reality, around
-        1175 BCE Pharaoh Ramses III conducted a slaughter of the displaced migrant
-        families we call the Sea Peoples, branding it a heroic victory against a
-        fearsome barbarian horde in the carving you see here.\r\n\r\nWhat the people
-        have in this game that they did not in real life, is the power to \u2018connect\u2019.
-        We have this power now. If you were able to open the internet and play this
-        game, you have this power.\r\n"
+      value: 'This game presents an ''alternate past''. Not in the sense of ''an
+        ancient world with modern technology'', but ''a world where things reach
+        a happy ending''. Probably.
+
+        
+
+        In reality, around 1175
+        BCE Pharaoh Ramses III conducted a slaughter of the displaced migrant families
+        we call the Sea Peoples, branding it a heroic victory against a fearsome
+        barbarian horde in the carving you see here.
+
+        
+
+        What the
+        people have in this game that they did not in real life, is the power to
+        ''connect''. We have this power now. If you were able to open the internet
+        and play this game, you have this power.
+
+'
       objectReference: {fileID: 0}
     - target: {fileID: 11456674, guid: a281d46f48b307b49af7ca8784823d9a, type: 3}
       propertyPath: m_FontData.m_FontSize

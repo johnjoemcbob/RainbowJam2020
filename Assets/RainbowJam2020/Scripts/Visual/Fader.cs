@@ -34,6 +34,15 @@ public class Fader : MonoBehaviour
 		FadeAlpha( 0, true );
 	}
 
+	private void Start()
+	{
+		if ( Game.Instance.Debug )
+		{
+			Speed *= 100;
+			HoldTime /= 100;
+		}
+	}
+
 	void Update()
     {
 		switch ( CurrentTrans )

@@ -134,7 +134,7 @@ public class InkHandler : MonoBehaviour
 		var max = 40;
 
 		WaitingForMore = false;
-		bool hasprevious = false;
+		int hasprevious = 0;
 		// Read all the content until we can't continue any more
 		int lines = 0;
 		while ( PreparedLines.Count > 0 )
@@ -178,9 +178,12 @@ public class InkHandler : MonoBehaviour
 			CreateContentView( text );
 			if ( Game.Instance.HasMessageReceived( text ) )
 			{
-				hasprevious = true;
+				hasprevious++;
 			}
-			Game.Instance.AddMessageReceived( text );
+			else
+			{
+				Game.Instance.AddMessageReceived( text );
+			}
 
 			PreparedLines.RemoveAt( 0 );
 		}
@@ -192,7 +195,7 @@ public class InkHandler : MonoBehaviour
 		}
 
 		// If this dialogue is being viewed again, just skip to the end!
-		if ( WaitingForMore && hasprevious )
+		if ( WaitingForMore && hasprevious == 3 )
 		{
 			RefreshView_Func();
 		}
